@@ -25,10 +25,20 @@ set number
 syntax on
 set laststatus=2
 
-
+"Настройки табов
 set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
 set autoindent
 set smartindent
+
+"Настройки для поиска
+set showmatch
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase 
+
+" Включаем bash-подобное дополнение командной строки                           
+set wildmode=longest:list,full
