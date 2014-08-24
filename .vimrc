@@ -44,4 +44,5 @@ set incsearch
 set ignorecase
 set smartcase 
 
-" Включаем bash-подобное дополнение командной строки                        " set wildmode=longest:list,full
+" Включаем bash-подобное дополнение командной строки
+set wildmode=longest:list,full
