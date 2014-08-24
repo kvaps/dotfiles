@@ -24,3 +24,11 @@ set guifont=Monospace:h10:cRUSSIAN
 set number
 syntax on
 set laststatus=2
+
+
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set autoindent
+set smartindent
