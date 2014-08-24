@@ -11,6 +11,10 @@ filetype off
     set encoding=utf-8
     endif
 
+" Vundle Install
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+" in vim :VundleInstall 
+
 Plugin 'gmarik/vundle'
 Plugin 'tomasr/molokai'
 Plugin 'Lokaltog/vim-powerline'
@@ -40,5 +44,4 @@ set incsearch
 set ignorecase
 set smartcase 
 
-" Включаем bash-подобное дополнение командной строки                           
-set wildmode=longest:list,full
+" Включаем bash-подобное дополнение командной строки                        " set wildmode=longest:list,full
