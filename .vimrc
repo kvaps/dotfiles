@@ -46,3 +46,9 @@ set smartcase
 
 " Включаем bash-подобное дополнение командной строки
 set wildmode=longest:list,full
+
+" Включаем поддержку мыши
+set mouse=a
+
+" Включаем поддержку системного буфера
+set clipboard=unnamed
