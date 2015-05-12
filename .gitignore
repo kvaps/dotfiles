@@ -7,6 +7,8 @@
 !.bashrc
 !.gitconfig
 
+!.xinitrc
+!.bash_profile
 !.config
 .config/*
 !.config/awesome/*

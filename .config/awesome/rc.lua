@@ -59,15 +59,15 @@ local layouts =
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+--    awful.layout.suit.tile.bottom,
+--    awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+--    awful.layout.suit.spiral,
+--    awful.layout.suit.spiral.dwindle,
+--    awful.layout.suit.max,
+--    awful.layout.suit.max.fullscreen,
+--    awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -84,13 +84,19 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-    names  = { "main", "www", "files", "im", 6, 7, 8, 9 },
-    layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+    screen1 = {
+        names  = { "term1", "term2", "files", "im", "keepass", 6, 7, 8, "player" },
+        layout = { layouts[2], layouts[2], layouts[2], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+    },
+    screen2 = {
+        names  = { "main", "www", "workplace", "remote", "winbox", 5, 6, 7, 8, 9 },
+        layout = { layouts[2], layouts[2], layouts[2], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+    },
 }
-for s = 1, screen.count() do
+
     -- Each screen has its own tag table.
-    tags[s] = awful.tag(tags.names, s, tags.layout)
-end
+    tags[1] = awful.tag(tags.screen1.names, 1, tags.screen2.layout)
+    tags[2] = awful.tag(tags.screen2.names, 2, tags.screen2.layout)
 -- }}}
 
 -- {{{ Menu
@@ -142,6 +148,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 require("volume")
 volume_widget = create_volume_widget()
 
+--[[
 -- Batery widget
 local battery = require("battery")
 batterywidget = wibox.widget.textbox()
@@ -151,10 +158,12 @@ batterywidget_timer:connect_signal("timeout", function()
   batterywidget:set_text(batteryInfo("BAT1"))
 end)
 batterywidget_timer:start()
+--]]
 
 -- Separator
 separator = wibox.widget.textbox()
 separator:set_text(" | ")
+
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
@@ -238,9 +247,9 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(separator)
-    right_layout:add(batterywidget)
-    right_layout:add(separator)
+--    right_layout:add(separator)
+--    right_layout:add(batterywidget)
+--    right_layout:add(separator)
     right_layout:add(wifi_signal_widget)
     right_layout:add(separator)
     right_layout:add(volume_widget)
@@ -304,6 +313,51 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight +20") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -20") end),
     awful.key({ }, "XF86WLAN", function () awful.util.spawn("if [ $(cat /sys/class/rfkill/rfkill1/soft) -eq 1 ]; then rfkill unblock 1; else rfkill block 1; fi") end), 
+
+    -- Multiply monitors selecting
+     awful.key({modkey,            }, "F1",     function () awful.screen.focus(1) end),
+     awful.key({modkey,            }, "F2",     function () awful.screen.focus(2) end),
+     awful.key({modkey, "Shift"    }, "F1", function (c) awful.client.movetoscreen(c, 1) end),
+     awful.key({modkey, "Shift"    }, "F2", function (c) awful.client.movetoscreen(c, 2) end),
+
+     awful.key({ modkey, "Control"   }, "Left", 
+     function()
+         for i = 1, screen.count() do
+             awful.tag.viewprev(i)
+         end
+     end ),
+     
+     awful.key({ modkey, "Control"   }, "Right", 
+     function()
+         for i = 1, screen.count() do
+             awful.tag.viewnext(i)
+         end
+     end ),
+
+     -- Grab window
+     awful.key({ modkey, "Shift"   }, "Left",
+        function (c)
+           local curidx = awful.tag.getidx()
+           if curidx == 1 then
+               awful.client.movetotag(tags[client.focus.screen][#tags[client.focus.screen]])
+           else
+               awful.client.movetotag(tags[client.focus.screen][curidx - 1])
+           end
+           awful.tag.viewidx(-1)
+       end),
+     awful.key({ modkey, "Shift"   }, "Right",
+       function (c)
+           local curidx = awful.tag.getidx()
+           if curidx == #tags[client.focus.screen] then
+               awful.client.movetotag(tags[client.focus.screen][1])
+           else
+               awful.client.movetotag(tags[client.focus.screen][curidx + 1])
+           end
+           awful.tag.viewidx(1)
+       end),
+
+    -- Lock screen
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
@@ -428,9 +482,9 @@ awful.rules.rules = {
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Firefox" },
-      properties = { tag = tags[1][2] } },
-    { rule = { class = "Winbox" },
-      properties = { tag = tags[1][6] } },
+      properties = { tag = tags[2][2] } },
+    { rule = { class = "Skype" },
+      properties = { tag = tags[1][4] } },
 }
 -- }}}
 
