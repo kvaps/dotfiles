@@ -51,4 +51,4 @@ set wildmode=longest:list,full
 set mouse=a
 
 " Включаем поддержку системного буфера
-set clipboard=unnamed
+set clipboard=unnamedplus
