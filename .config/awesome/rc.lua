@@ -72,7 +72,7 @@ local layouts =
 -- }}}
 
 -- {{{ Wallpaper
-theme.wallpaper = "/home/kvaps/Pictures/arch-wallpaper.jpg"
+theme.wallpaper = "/home/kvaps/Pictures/arch-wallpaper.png"
 
 if beautiful.wallpaper then
     for s = 1, screen.count() do
@@ -85,12 +85,12 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {
     screen1 = {
-        names  = { "term1", "term2", "files", "im", "keepass", 6, 7, 8, "player" },
+        names  = { "term1", "term2", "term3", "im", "keepass", 6, 7, 8, 9 },
         layout = { layouts[2], layouts[2], layouts[2], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
     },
     screen2 = {
-        names  = { "main", "www", "workplace", "remote", "winbox", 5, 6, 7, 8, 9 },
-        layout = { layouts[2], layouts[2], layouts[2], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+        names  = { "www", "workplace1", "workplace2", "remmina", "winbox", 6, 7, 8, "♫ " },
+        layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
     },
 }
 
@@ -474,17 +474,22 @@ awful.rules.rules = {
                      raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Firefox" },
-      properties = { tag = tags[2][2] } },
+      properties = { tag = tags[2][1] } },
     { rule = { class = "Skype" },
       properties = { tag = tags[1][4] } },
+    { rule = { class = "Gajim" },
+      properties = { tag = tags[1][4] } },
+    { rule = { class = "Remmina" },
+      properties = { tag = tags[2][4] } },
+    { rule = { class = "Remote-viewer" },
+      properties = { tag = tags[2][2] } },
+    { rule = { class = "Vlc" },
+      properties = { tag = tags[2][9] } },
+    { rule = { class = "Wine", name = "Open Database*" }, -- Keepass
+      properties = { tag = tags[1][5] } },
+    { rule = { class = "Wine", name = "WinBox*" }, -- Winbox
+      properties = { tag = tags[2][5] } },
 }
 -- }}}
 
