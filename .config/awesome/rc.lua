@@ -86,7 +86,7 @@ end
 tags = {
     screen1 = {
         names  = { "term1", "term2", "term3", "im", "keepass", 6, 7, 8, 9 },
-        layout = { layouts[2], layouts[2], layouts[2], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+        layout = { layouts[4], layouts[4], layouts[4], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
     },
     screen2 = {
         names  = { "www", "workplace1", "workplace2", "remmina", "winbox", 6, 7, 8, "♫ " },
