@@ -48,7 +48,12 @@ set smartcase
 set wildmode=longest:list,full
 
 " Включаем поддержку мыши
-set mouse=a
+"set mouse=a
 
 " Включаем поддержку системного буфера
 set clipboard=unnamedplus
+
+" Запоминать расположение курсора
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
