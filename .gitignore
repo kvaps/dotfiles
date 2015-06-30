@@ -6,8 +6,9 @@
 !.vimrc
 !.bashrc
 !.gitconfig
+!.sshrc
+!.sshrc.d
 
 !.config
 .config/*
 !.config/awesome/*
-

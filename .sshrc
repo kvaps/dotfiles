@@ -1,0 +1,4 @@
+source $SSHHOME/.sshrc.d/.bashrc
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+git config --global user.name "kvaps"
+git config --global user.email "kvapss@gmail.com"
