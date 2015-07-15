@@ -42,9 +42,14 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+
+terminal = "urxvt" -- Терминал по умолчанию
+browser = "firefox" -- Браузер по умолчанию
+editor = os.getenv("EDITOR") or "vim" -- Консольный редактор по умолчанию
+editor_cmd = terminal .. " -e" .. editor -- Команда запуска редактора
+
+-- Keyboar Layout
+awful.util.spawn_with_shell("setxkbmap -layout 'us,ru' -variant ,winkeys -option 'grp:caps_toggle'")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -85,12 +90,12 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {
     screen1 = {
-        names  = { "term1", "term2", "term3", "im", "keepass", 6, 7, 8, 9 },
-        layout = { layouts[4], layouts[4], layouts[4], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
-    },
-    screen2 = {
         names  = { "www", "workplace1", "workplace2", "remmina", "winbox", 6, 7, 8, "♫ " },
         layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+    },
+    screen2 = {
+        names  = { "term1", "term2", "term3", "im", "keepass", 6, 7, 8, 9 },
+        layout = { layouts[4], layouts[4], layouts[4], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
     },
 }
 
@@ -475,21 +480,21 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons } },
     { rule = { class = "Firefox" },
-      properties = { tag = tags[2][1] } },
+      properties = { tag = tags[1][1] } },
     { rule = { class = "Skype" },
-      properties = { tag = tags[1][4] } },
-    { rule = { class = "Gajim" },
-      properties = { tag = tags[1][4] } },
-    { rule = { class = "Remmina" },
       properties = { tag = tags[2][4] } },
+    { rule = { class = "Gajim" },
+      properties = { tag = tags[2][4] } },
+    { rule = { class = "Remmina" },
+      properties = { tag = tags[1][4] } },
     { rule = { class = "Remote-viewer" },
-      properties = { tag = tags[2][2] } },
+      properties = { tag = tags[1][2] } },
     { rule = { class = "Vlc" },
-      properties = { tag = tags[2][9] } },
+      properties = { tag = tags[1][9] } },
     { rule = { class = "Wine", name = "Open Database*" }, -- Keepass
-      properties = { tag = tags[1][5] } },
-    { rule = { class = "Wine", name = "WinBox*" }, -- Winbox
       properties = { tag = tags[2][5] } },
+    { rule = { class = "Wine", name = "WinBox*" }, -- Winbox
+      properties = { tag = tags[1][5] } },
 }
 -- }}}
 
@@ -565,13 +570,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
---kvaps config
-
-terminal = "terminator" -- Терминал по умолчанию
-browser = "firefox" -- Браузер по умолчанию
-editor = os.getenv("EDITOR") or "vim" -- Консольный редактор по умолчанию
-editor_cmd = terminal .. " -e" .. editor -- Команда запуска редактора
-
--- Keyboar Layout
-awful.util.spawn_with_shell("setxkbmap -layout 'us,ru' -variant ,winkeys -option 'grp:caps_toggle'")
