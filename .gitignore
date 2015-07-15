@@ -8,8 +8,13 @@
 !.gitconfig
 
 !.xinitrc
+!.Xdefaults
 !.bash_profile
 !.config
 .config/*
+!.config/awesome
 !.config/awesome/*
-
+!.config/termite
+!.config/termite/*
+!.config/ranger
+!.config/ranger/*
