@@ -8,7 +8,9 @@
 !.gitconfig
 !.sshrc
 !.sshrc.d
-
+!.xinitrc
+!.Xdefaults
+!.bash_profile
 !.config
 .config/*
 !.config/awesome

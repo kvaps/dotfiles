@@ -42,9 +42,14 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+
+terminal = "terminator" -- Терминал по умолчанию
+browser = "firefox" -- Браузер по умолчанию
+editor = os.getenv("EDITOR") or "vim" -- Консольный редактор по умолчанию
+editor_cmd = terminal .. " -e" .. editor -- Команда запуска редактора
+
+-- Keyboar Layout
+awful.util.spawn_with_shell("setxkbmap -layout 'us,ru' -variant ,winkeys -option 'grp:caps_toggle'")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -555,12 +560,3 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
---kvaps config
-
-terminal = "terminator" -- Терминал по умолчанию
-browser = "firefox" -- Браузер по умолчанию
-editor = os.getenv("EDITOR") or "vim" -- Консольный редактор по умолчанию
-editor_cmd = terminal .. " -e" .. editor -- Команда запуска редактора
-
--- Keyboar Layout
-awful.util.spawn_with_shell("setxkbmap -layout 'us,ru' -variant ,winkeys -option 'grp:caps_toggle'")
