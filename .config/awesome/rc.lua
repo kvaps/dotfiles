@@ -314,7 +314,7 @@ globalkeys = awful.util.table.join(
     -- Volume control
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 9%+") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 9%-") end),
-    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("bash -c \"amixer sset Master toggle; amixer sset Speaker unmute\"") end),
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight +20") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -20") end),
     awful.key({ }, "XF86WLAN", function () awful.util.spawn("if [ $(cat /sys/class/rfkill/rfkill1/soft) -eq 1 ]; then rfkill unblock 1; else rfkill block 1; fi") end), 
