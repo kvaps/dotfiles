@@ -136,10 +136,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
      local wifiStrength = awful.util.pread("awk 'NR==3 {printf \"%.1f%%\\n\",($3/70)*100}' /proc/net/wireless")
      if wifiStrength == "" then
          -- wifi_icon:set_image(beautiful.wireless_down)
-         wifi_signal_widget:set_text("")
+         wifi_signal_widget:set_text("☸ down")
      else
          -- wifi_icon:set_image(beautiful.wireless)
-         wifi_signal_widget:set_text(spacer .. wifiStrength)
+         wifi_signal_widget:set_text( "☸" .. spacer .. wifiStrength)
      end
  end
  wifiInfo()
@@ -151,7 +151,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Volume widget
 
 require("volume")
-volume_widget = create_volume_widget()
 
 --[[
 -- Batery widget
@@ -252,12 +251,13 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(separator)
+    right_layout:add(volume_widget)
 --    right_layout:add(separator)
 --    right_layout:add(batterywidget)
 --    right_layout:add(separator)
-    right_layout:add(wifi_signal_widget)
+--    right_layout:add(wifi_signal_widget)
     right_layout:add(separator)
-    right_layout:add(volume_widget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -312,9 +312,9 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Volume control
-    awful.key({ }, "XF86AudioRaiseVolume", function () inc_volume(volume_widget) end),
-    awful.key({ }, "XF86AudioLowerVolume", function () dec_volume(volume_widget) end),
-    awful.key({ }, "XF86AudioMute", function() mute_volume(volume_widget) end),
+    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 9%+") end),
+    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 9%-") end),
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight +20") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -20") end),
     awful.key({ }, "XF86WLAN", function () awful.util.spawn("if [ $(cat /sys/class/rfkill/rfkill1/soft) -eq 1 ]; then rfkill unblock 1; else rfkill block 1; fi") end), 

@@ -6,7 +6,8 @@
 !.vimrc
 !.bashrc
 !.gitconfig
-
+!.sshrc
+!.sshrc.d
 !.xinitrc
 !.Xdefaults
 !.bash_profile

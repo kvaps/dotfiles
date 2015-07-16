@@ -25,6 +25,10 @@ man() {
     man "$@"
 }
 
+#History search UP and DOWN
+bind '"\e[A": history-search-backward' 2>/dev/null
+bind '"\e[B": history-search-forward' 2>/dev/null
+
 if [ "$TERM" == "xterm" ]; then
     export TERM=xterm-256color
 fi
@@ -32,4 +36,4 @@ fi
 export EDITOR=vim
 export VISUAL=vim
 
-PS1='\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\$\[\e[m\] \[\e[0m\]'
+PS1='\[\e[1;36m\]\u@\h\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\$\[\e[m\] \[\e[0m\]'
