@@ -320,8 +320,8 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86WLAN", function () awful.util.spawn("if [ $(cat /sys/class/rfkill/rfkill1/soft) -eq 1 ]; then rfkill unblock 1; else rfkill block 1; fi") end), 
 
     -- Multiply monitors selecting
-     awful.key({modkey,            }, "F1",     function () awful.screen.focus(1) end),
-     awful.key({modkey,            }, "F2",     function () awful.screen.focus(2) end),
+     awful.key({modkey,            }, "F1",     function () awful.screen.focus(2) end),
+     awful.key({modkey,            }, "F2",     function () awful.screen.focus(1) end),
      awful.key({modkey, "Shift"    }, "F1", function (c) awful.client.movetoscreen(c, 1) end),
      awful.key({modkey, "Shift"    }, "F2", function (c) awful.client.movetoscreen(c, 2) end),
 
