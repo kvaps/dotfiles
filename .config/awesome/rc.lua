@@ -314,7 +314,7 @@ globalkeys = awful.util.table.join(
     -- Volume control
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 9%+") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 9%-") end),
-    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("bash -c \"amixer sset Master toggle; amixer sset Speaker unmute\"") end),
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("bash -c 'amixer sset Master toggle; amixer sset Speaker unmute'") end),
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight +20") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -20") end),
     awful.key({ }, "XF86WLAN", function () awful.util.spawn("if [ $(cat /sys/class/rfkill/rfkill1/soft) -eq 1 ]; then rfkill unblock 1; else rfkill block 1; fi") end), 
@@ -364,6 +364,20 @@ globalkeys = awful.util.table.join(
     -- Lock screen
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
 
+    -- CopyPaste and other shortcuts
+
+    awful.key({ modkey,           }, "c",     function () awful.util.spawn("/home/kvaps/.config/awesome/copypaste.sh copy") end),
+    awful.key({ modkey,           }, "v",     function () awful.util.spawn("/home/kvaps/.config/awesome/copypaste.sh paste") end),
+    awful.key({ modkey,           }, "x",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+x") end),
+    awful.key({ modkey,           }, "z",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+z") end),
+    awful.key({ modkey, "Shift"   }, "z",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+shift+z") end),
+    awful.key({ modkey,           }, "y",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+y") end),
+    awful.key({ modkey,           }, "a",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+a") end),
+    awful.key({ modkey,           }, "s",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+s") end),
+    awful.key({ modkey,           }, "o",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+o") end),
+    awful.key({ modkey,           }, "f",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+f") end),
+
+
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
@@ -383,13 +397,6 @@ globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
-                  awful.util.eval, nil,
-                  awful.util.getdir("cache") .. "/history_eval")
-              end),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end)
 )
@@ -399,7 +406,6 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,           }, "n",
         function (c)
