@@ -6,16 +6,16 @@ S3='"XTerm"'
 
 if [ $1 = "copy" ]; then
     if [ $S1 = $S2 ] || [ $S1 = $S3 ]; then
-    xdotool key --clearmodifiers ctrl+shift+c
+    xvkbd -xsendevent -text '\[Control_L]\[Shift_L]c'
     else
-    xdotool key --clearmodifiers ctrl+c
+    xvkbd -xsendevent -text '\[Control_L]c'
     fi
 fi
 
 if [ $1 = "paste" ]; then
     if [ $S1 = $S2 ] || [ $S1 = $S3 ]; then
-    xdotool key --clearmodifiers ctrl+shift+v
+    xvkbd -xsendevent -text '\[Control_L]\[Shift_L]v'
     else
-    xdotool key --clearmodifiers ctrl+v
+    xvkbd -xsendevent -text '\[Control_L]v'
     fi
 fi

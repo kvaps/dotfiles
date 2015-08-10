@@ -368,15 +368,14 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey,           }, "c",     function () awful.util.spawn("/home/kvaps/.config/awesome/copypaste.sh copy") end),
     awful.key({ modkey,           }, "v",     function () awful.util.spawn("/home/kvaps/.config/awesome/copypaste.sh paste") end),
-    awful.key({ modkey,           }, "x",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+x") end),
-    awful.key({ modkey,           }, "z",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+z") end),
-    awful.key({ modkey, "Shift"   }, "z",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+shift+z") end),
-    awful.key({ modkey,           }, "y",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+y") end),
-    awful.key({ modkey,           }, "a",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+a") end),
-    awful.key({ modkey,           }, "s",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+s") end),
-    awful.key({ modkey,           }, "o",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+o") end),
-    awful.key({ modkey,           }, "f",     function () awful.util.spawn("xdotool key --clearmodifiers ctrl+f") end),
-
+    awful.key({ modkey,           }, "x",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]x'") end),
+    awful.key({ modkey,           }, "z",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]z'") end),
+    awful.key({ modkey, "Shift"   }, "z",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]\\[Shift_L]z'") end),
+    awful.key({ modkey,           }, "y",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]y'") end),
+    awful.key({ modkey,           }, "a",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]a'") end),
+    awful.key({ modkey,           }, "s",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]s'") end),
+    awful.key({ modkey,           }, "o",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]o'") end),
+    awful.key({ modkey,           }, "f",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]f'") end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
