@@ -64,10 +64,10 @@ local layouts =
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
---    awful.layout.suit.tile.bottom,
---    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+--    awful.layout.suit.fair,
+--    awful.layout.suit.fair.horizontal,
 --    awful.layout.suit.spiral,
 --    awful.layout.suit.spiral.dwindle,
 --    awful.layout.suit.max,
@@ -91,11 +91,11 @@ end
 tags = {
     screen1 = {
         names  = { "www", "workplace1", "workplace2", "remmina", "winbox", 6, 7, 8, "♫ " },
-        layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+        layout = { layouts[3], layouts[3], layouts[3], layouts[3], layouts[3], layouts[3], layouts[3], layouts[3], layouts[3] }
     },
     screen2 = {
         names  = { "term1", "term2", "term3", "im", "keepass", 6, 7, 8, 9 },
-        layout = { layouts[4], layouts[4], layouts[4], layouts[4], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+        layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[3], layouts[3], layouts[3], layouts[3], layouts[3] }
     },
 }
 
@@ -370,7 +370,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "v",     function () awful.util.spawn("/home/kvaps/.config/awesome/copypaste.sh paste") end),
     awful.key({ modkey,           }, "x",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]x'") end),
     awful.key({ modkey,           }, "z",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]z'") end),
-    awful.key({ modkey, "Shift"   }, "z",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]\\[Shift_L]z'") end),
+    awful.key({ modkey, "Shift"   }, "z",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]\\[Shift_L]\\[Z]'") end),
     awful.key({ modkey,           }, "y",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]y'") end),
     awful.key({ modkey,           }, "a",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]a'") end),
     awful.key({ modkey,           }, "s",     function () awful.util.spawn("xvkbd -xsendevent -text '\\[Control_L]s'") end),
@@ -492,11 +492,13 @@ awful.rules.rules = {
       properties = { tag = tags[2][4] } },
     { rule = { class = "Remmina" },
       properties = { tag = tags[1][4] } },
+    { rule = { class = "Krdc" },
+      properties = { tag = tags[1][4] } },
     { rule = { class = "Remote-viewer" },
       properties = { tag = tags[1][2] } },
     { rule = { class = "Vlc" },
       properties = { tag = tags[1][9] } },
-    { rule = { class = "Wine", name = "Open Database*" }, -- Keepass
+    { rule = { class = "KeePass" },
       properties = { tag = tags[2][5] } },
     { rule = { class = "Wine", name = "WinBox*" }, -- Winbox
       properties = { tag = tags[1][5] } },
