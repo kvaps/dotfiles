@@ -1,27 +1,25 @@
 set nocompatible
 filetype off
 
-    if has('win32')
-    set rtp+=~/vimfiles/bundle/vundle/
-    let path='~/vimfiles/bundle'
-    call vundle#rc(path)
-    else
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    set encoding=utf-8
-    endif
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
-" Vundle Install
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
-" in vim :VundleInstall 
+call plug#begin('~/.vim/plugged')
+Plug 'tomasr/molokai'
+Plug 'Lokaltog/vim-powerline'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'ConradIrwin/vim-bracketed-paste'
+call plug#end()
 
-Plugin 'gmarik/vundle'
-Plugin 'tomasr/molokai'
-Plugin 'Lokaltog/vim-powerline'
+if ! empty(glob('.vim/plugged/molokai/colors/molokai.vim'))
+  colorscheme molokai
+  let g:molokai_original = 1
+  let g:rehash256 = 1
+endif
 
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
 set background=dark
 set guifont=Monospace:h10:cRUSSIAN
 
@@ -49,6 +47,7 @@ set wildmode=longest:list,full
 
 " Включаем поддержку мыши
 "set mouse=a
+"vnoremap <C-c> :w !xsel -b<CR><CR>
 
 " Включаем поддержку системного буфера
 set clipboard=unnamedplus
