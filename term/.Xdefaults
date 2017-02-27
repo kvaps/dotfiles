@@ -1,0 +1,57 @@
+# Terminal name
+*termName: xterm-256color
+
+# Use UTF-8
+XTerm*locale: true
+XTerm*metaSendsEscape: true
+
+# Save 4096 lines
+Xterm*saveLines: 4096
+
+# URxvt appearance
+urxvt*transparent: true
+urxvt*shading: 30
+URxvt.scrollBar: false
+
+# Colors
+*foreground: rgb:eb/db/b2
+*background: rgb:17/17/17
+*color0:  rgb:28/28/28
+*color1:  rgb:cc/24/1d
+*color2:  rgb:98/97/1a
+*color3:  rgb:d7/99/21
+*color4:  rgb:45/85/88
+*color5:  rgb:b1/62/86
+*color6:  rgb:68/9d/6a
+*color7:  rgb:bd/ae/93
+*color8:  rgb:7c/6f/64
+*color9:  rgb:fb/49/34
+*color10: rgb:b8/bb/26
+*color11: rgb:fa/bd/2f
+*color12: rgb:83/a5/98
+*color13: rgb:d3/86/9b
+*color14: rgb:8e/c0/7c
+*color15: rgb:eb/db/b2
+
+# Fonts
+XTerm*faceName: Bitstream Vera Sans Mono
+XTerm*faceSize: 10
+URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=15:antialias=true:hinting=true
+URxvt*boldFont: xft:Bitstream Vera Sans Mono:bold:pixelsize=15:antialias=true:hinting=true
+
+# Clipboard
+XTerm*VT100*translations: #override\nShift Ctrl <KeyPress> v:insert-selection(CLIPBOARD)\nShift Ctrl <KeyPress> c:copy-selection(CLIPBOARD)
+URxvt.perl-ext-common: default,clipboard,matcher
+URxvt.iso14755: false
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+# URL matcher
+!URxvt.urlLauncher: xdg-open
+URxvt.matcher.button: 1
+
+# Fix Alt
+XTerm*metaSendsEscape: true
+# Fix Home and End
+URxvt*keysym.Home: \033[1~
+URxvt*keysym.End: \033[4~

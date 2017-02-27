@@ -1,0 +1,10 @@
+[user]
+	name = kvaps
+	email = kvapss@gmail.com
+[core]
+	autocrlf = input
+	safecrlf = true
+[alias]
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+[credential]
+	helper = cache --timeout=3600
