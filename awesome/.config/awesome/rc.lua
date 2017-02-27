@@ -496,7 +496,7 @@ awful.rules.rules = {
       properties = { screen = "1", tag = "remmina" } },
     { rule = { class = "Remote-viewer" },
       properties = { screen = "1", tag = "workplace1" } },
-    { rule = { class = "Vlc" },
+    { rule = { class = "Deadbeef" },
       properties = { screen = "1", tag = "♫ " } },
     { rule = { class = "KeePass" },
       properties = { screen = "1", tag = "keepass" } },
