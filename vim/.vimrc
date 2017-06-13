@@ -9,7 +9,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
-Plug 'Lokaltog/vim-powerline'
+"Plug 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'ConradIrwin/vim-bracketed-paste'
 call plug#end()
@@ -22,6 +23,7 @@ endif
 
 set background=dark
 set guifont=Monospace:h10:cRUSSIAN
+let g:airline_powerline_fonts = 1
 
 set number
 syntax on

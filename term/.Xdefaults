@@ -34,10 +34,10 @@ URxvt.scrollBar: false
 *color15: rgb:eb/db/b2
 
 # Fonts
-XTerm*faceName: Bitstream Vera Sans Mono
+#XTerm*faceName: Consolas for Powerline
+XTerm*faceName: DejaVu Sans Mono for Powerline
 XTerm*faceSize: 10
-URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=15:antialias=true:hinting=true
-URxvt*boldFont: xft:Bitstream Vera Sans Mono:bold:pixelsize=15:antialias=true:hinting=true
+URxvt*font: xft:DejaVu Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true,xft:DejaVu Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true
 
 # Clipboard
 XTerm*VT100*translations: #override\nShift Ctrl <KeyPress> v:insert-selection(CLIPBOARD)\nShift Ctrl <KeyPress> c:copy-selection(CLIPBOARD)
