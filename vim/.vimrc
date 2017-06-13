@@ -46,8 +46,25 @@ set smartcase
 set wildmode=longest:list,full
 
 " Включаем поддержку мыши
-"set mouse=a
-"vnoremap <C-c> :w !xsel -b<CR><CR>
+set mouse=a
+
+" backspace in Visual mode deletes selection
+vnoremap <BS> d
+
+" CTRL-X and SHIFT-Del are Cut
+vnoremap <C-X> "+x
+vnoremap <S-Del> "+x
+
+" CTRL-C and CTRL-Insert are Copy
+vnoremap <C-C> "+y
+vnoremap <C-Insert> "+y
+
+" CTRL-V and SHIFT-Insert are Paste
+"map <C-V>		"+gP
+map <S-Insert>		"+gP
+
+"cmap <C-V>		<C-R>+
+cmap <S-Insert>	<C-R>+
 
 " Включаем поддержку системного буфера
 set clipboard=unnamedplus
