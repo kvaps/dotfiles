@@ -2,7 +2,7 @@
 	name = kvaps
 	email = kvapss@gmail.com
 [core]
-	autocrlf = input
+	autocrlf = false
 	safecrlf = true
 [alias]
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
