@@ -181,7 +181,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "www", "term1", "term2", "workplace", "keepass", "remmina", "im", "email", "♫ " }, s, awful.layout.layouts[1])
+    awful.tag({ "www", " ⟙2 ", " ⟙3 ", " ⟙4 ", "keepass", "email", " ★7 ", " ★8 ", " ♫ " }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -484,24 +484,16 @@ awful.rules.rules = {
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
 
+    { rule = { class = "Vivaldi" },
+      properties = { tag = "www" } },
     { rule = { class = "Firefox" },
       properties = { tag = "www" } },
-    { rule = { class = "Skype" },
-      properties = { tag = "im" } },
-    { rule = { class = "Gajim" },
-      properties = { tag = "im" } },
-    { rule = { class = "Remmina" },
-      properties = { tag = "remmina" } },
-    { rule = { class = "Krdc" },
-      properties = { tag = "remmina" } },
-    { rule = { class = "Remote-viewer" },
-      properties = { tag = "workplace1" } },
+    { rule = { class = "Thunderbird" },
+      properties = { tag = "email" } },
     { rule = { class = "Deadbeef" },
       properties = { tag = "♫ " } },
     { rule = { class = "KeePass" },
       properties = { tag = "keepass" } },
-    { rule = { class = "Wine", name = "WinBox*" }, -- Winbox
-      properties = { tag = "workplace" } },
 
 }
 -- }}}
