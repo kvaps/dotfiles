@@ -2,6 +2,12 @@
 # ~/.bashrc
 #
 
+export PATH=$PATH:${HOME}/.local/bin
+export EDITOR="vim"
+export BROWSER="vivaldi-stable"
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export ONE_XMLRPC=http://10.36.10.20:2633/RPC2
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
