@@ -1,19 +1,19 @@
-# Terminal name
+! Terminal name
 *termName: xterm-256color
 
-# Use UTF-8
+! Use UTF-8
 XTerm*locale: true
 XTerm*metaSendsEscape: true
 
-# Save 4096 lines
+! Save 4096 lines
 Xterm*saveLines: 4096
 
-# URxvt appearance
+! URxvt appearance
 urxvt*transparent: true
 urxvt*shading: 30
 URxvt.scrollBar: false
 
-# Colors
+! Colors
 *foreground: rgb:eb/db/b2
 *background: rgb:17/17/17
 *color0:  rgb:28/28/28
@@ -33,25 +33,62 @@ URxvt.scrollBar: false
 *color14: rgb:8e/c0/7c
 *color15: rgb:eb/db/b2
 
-# Fonts
-#XTerm*faceName: Consolas for Powerline
+! Fonts
+!XTerm*faceName: Consolas for Powerline
 XTerm*faceName: DejaVu Sans Mono for Powerline
 XTerm*faceSize: 10
 URxvt*font: xft:DejaVu Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true,xft:DejaVu Sans Mono for Powerline:pixelsize=13:antialias=true:hinting=true
 
-# Clipboard
+! Clipboard
 XTerm*VT100*translations: #override\nShift Ctrl <KeyPress> v:insert-selection(CLIPBOARD)\nShift Ctrl <KeyPress> c:copy-selection(CLIPBOARD)
 URxvt.perl-ext-common: default,clipboard,matcher
 URxvt.iso14755: false
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
-# URL matcher
+! URL matcher
 !URxvt.urlLauncher: xdg-open
 URxvt.matcher.button: 1
 
-# Fix Alt
+! Fix Alt
 XTerm*metaSendsEscape: true
-# Fix Home and End
+! Fix Home and End
 URxvt*keysym.Home: \033[1~
 URxvt*keysym.End: \033[4~
+
+
+! Xscreensaver
+xscreensaver.splash: false
+
+!font settings
+xscreensaver.Dialog.headingFont:        -*-fixed-medium-*-*-*-14-*-*-*-*-*-iso10646-*
+xscreensaver.Dialog.bodyFont:           -*-fixed-medium-*-*-*-14-*-*-*-*-*-iso10646-*
+xscreensaver.Dialog.labelFont:          -*-fixed-medium-*-*-*-14-*-*-*-*-*-iso10646-*
+xscreensaver.Dialog.unameFont:          -*-fixed-medium-*-*-*-12-*-*-*-*-*-iso10646-*
+xscreensaver.Dialog.buttonFont:         -*-fixed-medium-*-*-*-14-*-*-*-*-*-iso10646-*
+xscreensaver.Dialog.dateFont:           -*-fixed-medium-*-*-*-14-*-*-*-*-*-iso10646-*
+xscreensaver.passwd.passwdFont:         -*-fixed-medium-*-*-*-12-*-*-*-*-*-iso10646-*
+
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #ffffff
+xscreensaver.Dialog.background:         #111111
+xscreensaver.Dialog.topShadowColor:     #111111
+xscreensaver.Dialog.bottomShadowColor:  #111111
+xscreensaver.Dialog.Button.foreground:  #666666
+xscreensaver.Dialog.Button.background:  #ffffff
+
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #666666
+xscreensaver.Dialog.text.background:    #ffffff
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        2
+xscreensaver.Dialog.shadowThickness:    2
+
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #ff0000
+xscreensaver.passwd.thermometer.background:  #000000
+xscreensaver.passwd.thermometer.width:       8
+
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
+
