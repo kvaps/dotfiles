@@ -491,7 +491,7 @@ awful.rules.rules = {
     { rule = { class = "Thunderbird" },
       properties = { tag = "email" } },
     { rule = { class = "Deadbeef" },
-      properties = { tag = "♫ " } },
+      properties = { tag = " ♫ " } },
     { rule = { class = "keepassxc" },
       properties = { tag = "keepass" } },
     { rule = { class = "KeePass" },
