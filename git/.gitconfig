@@ -1,6 +1,7 @@
 [user]
 	name = kvaps
 	email = kvapss@gmail.com
+	signingkey = kvapss@gmail.com
 [core]
 	autocrlf = false
 	safecrlf = true
@@ -8,3 +9,7 @@
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [credential]
 	helper = cache --timeout=3600
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[url "ssh://git@gitlab.wedos.org/"]
+       insteadOf = https://gitlab.wedos.org/
