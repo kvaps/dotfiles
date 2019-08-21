@@ -6,7 +6,13 @@ export PATH=$PATH:${HOME}/.local/bin
 export EDITOR="vim"
 export BROWSER="vivaldi-stable"
 export QT_QPA_PLATFORMTHEME="qt5ct"
-export ONE_XMLRPC=http://10.36.10.20:2633/RPC2
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH="$PATH:$GOBIN"
+
+# OpenNebula
+export PATH=$PATH:.gem/ruby/2.6.0/bin
+export ONE_XMLRPC=https://api.opennebula.wedos.cloud/RPC2
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -14,14 +20,12 @@ export ONE_XMLRPC=http://10.36.10.20:2633/RPC2
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-if [ -f `which powerline-daemon` ]; then
+if [ "$TERM" != "linux" ] && [ -f `which powerline-daemon` ]; then
   powerline-daemon -q
   POWERLINE_BASH_CONTINUATION=1
   POWERLINE_BASH_SELECT=1
   . /usr/lib/python*/site-packages/powerline/bindings/bash/powerline.sh
 fi
-
-
 
 SSH_ENV="$HOME/.ssh/environment"
 
@@ -44,3 +48,9 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+
+# Setup fuck alias
+eval "$(thefuck --alias)"
+
+# Kubectl shell completion
+source '/home/kvaps/.kube/completion.bash.inc'
