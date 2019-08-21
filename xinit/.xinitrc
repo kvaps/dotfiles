@@ -14,7 +14,8 @@ xrdb -merge ~/.Xresources && xscreensaver -nosplash &
 nm-applet &
 columeicon &
 cbatticon &
-volumeicon &
+kmix &
 blueman-applet &
 dropbox &
+syncthing-gtk -ms &
 exec awesome

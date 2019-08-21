@@ -9,7 +9,16 @@
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [credential]
 	helper = cache --timeout=3600
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+[url "git@github.com:kvaps"]
+	insteadOf = https://github.com/kvaps
 [url "ssh://git@gitlab.wedos.org/"]
-       insteadOf = https://gitlab.wedos.org/
+    insteadOf = https://gitlab.wedos.org/
+[url "ssh://git@gitlab.wedos.org/"]
+    insteadOf = ssh://git@gitlab.opennebula.wedos.cloud/
+[url "ssh://git@gitlab.wedos.org/"]
+    insteadOf = https://gitlab.opennebula.wedos.cloud/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
