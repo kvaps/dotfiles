@@ -122,7 +122,9 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN"
+export LESS="-F -X $LESS"
 
+# Colorize output
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
