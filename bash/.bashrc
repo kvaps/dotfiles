@@ -4,7 +4,7 @@
 
 export PATH=$PATH:${HOME}/.local/bin
 export EDITOR="vim"
-export BROWSER="vivaldi-stable"
+export BROWSER="firefox"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
