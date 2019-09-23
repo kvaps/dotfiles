@@ -88,7 +88,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# fish like plugins
+# fish like completion
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
