@@ -9,9 +9,10 @@ export ZSH="/home/kvaps/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 if [ "$TERM" != "linux" ]; then
-  ZSH_THEME="powerlevel9k/powerlevel9k"
+  #ZSH_THEME="powerlevel9k/powerlevel9k"
+  ZSH_THEME="powerlevel10k/powerlevel10k"
 else
-  ZSH_THEME="powerlevel9k/agnoster"
+  ZSH_THEME="agnoster"
 fi
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -97,23 +98,34 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # for code ({000..255}) print -P -- "%F{$code}Foreground%f $code %K{$code}%F{255}Back%f%F{232}ground%f%k"
 
 # PowerLevel9K configuration
-prompt_kube_ps1(){
-   echo -n "`kube_ps1` "
-}
 KUBE_PS1_PREFIX=""
 KUBE_PS1_SUFFIX=""
-KUBE_PS1_SYMBOL_DEFAULT=""
+KUBE_PS1_SEPARATOR=""
+KUBE_PS1_SYMBOL_ENABLE="false"
 KUBE_PS1_DIVIDER=" "
+
+POWERLEVEL9K_CUSTOM_KUBE_PS1='kube_ps1'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir virtualenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kube_ps1 background_jobs status vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_kube_ps1 vcs background_jobs status)
 POWERLEVEL9K_USER_DEFAULT_FOREGROUND='232'
 POWERLEVEL9K_USER_DEFAULT_BACKGROUND='208'
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='237'
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='236'
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='250'
-POWERLEVEL9K_DIR_HOME_BACKGROUND='237'
+POWERLEVEL9K_DIR_HOME_BACKGROUND='236'
 POWERLEVEL9K_DIR_HOME_FOREGROUND='250'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='237'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='236'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='250'
+POWERLEVEL9K_CUSTOM_KUBE_PS1_FOREGROUND='233'
+POWERLEVEL9K_CUSTOM_KUBE_PS1_BACKGROUND='234'
+POWERLEVEL9K_VCS_BACKGROUND='112'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='214'
+#POWERLEVEL9K_VCS_FOREGROUND='148'
+#POWERLEVEL9K_VCS_BACKGROUND='235'
+#POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='214'
+#POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='235'
+POWERLEVEL9K_STATUS_BACKGROUND='236'
+POWERLEVEL9K_STATUS_ERROR_BACKGROUND='124'
+POWERLEVEL9K_STATUS_ERROR_FOREGROUND='255'
 
 # User configuration
 export PATH=$PATH:${HOME}/.local/bin
