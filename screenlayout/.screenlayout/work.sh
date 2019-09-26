@@ -1,5 +1,5 @@
 #!/bin/sh
-if xrandr | grep -q 1920x1080_60.00; then
+if ! xrandr | grep -q 1920x1080_60.00; then
   MODELINE="$(cvt 1920 1080 60 | tail -n1 | cut -d' ' -f3-)"
   xrandr --newmode 1920x1080_60.00 $MODELINE
 fi
