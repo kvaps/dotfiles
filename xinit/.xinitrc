@@ -10,7 +10,6 @@ export BROWSER="firefox"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources &
-xrdb -merge ~/.Xresources && xscreensaver -nosplash &
 nm-applet &
 columeicon &
 cbatticon &
