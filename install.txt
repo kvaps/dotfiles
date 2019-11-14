@@ -11,15 +11,14 @@ mkfs.btrfs /dev/nvme0n1p2
 
 mount /dev/nvme0n1p2 /mnt
 btrfs subvolume create /mnt/@
-btrfs subvolume create /mnt/@boot
+btrfs subvolume create /mnt/@snapshots
 btrfs subvolume create /mnt/@home
 umount /mnt
 mount -o subvol=@,relatime,compress=lzo,space_cache,autodefrag /dev/nvme0n1p2 /mnt/
 mkdir -p /mnt/boot/efi /mnt/home
-mount -o subvol=@boot,relatime,compress=lzo,space_cache,autodefrag /dev/nvme0n1p2 /mnt/boot
-mount /dev/nvme0n1p1 /mnt/boot/home
+mount /dev/nvme0n1p1 /mnt/boot/efi
+mount -o subvol=@snapshots,relatime,compress=lzo,space_cache,autodefrag /dev/nvme0n1p2 /mnt/snapshots
 mount -o subvol=@home,relatime,compress=lzo,space_cache,autodefrag /dev/nvme0n1p2 /mnt/home
-
 
 # install base system
 pacstrap /mnt base base-devel linux linux-firmware
@@ -162,7 +161,7 @@ yay -S dropbox
 xdg-user-dirs-update
 
 # install useful tools
-pacman -S bash-completion openssh bind-tools thefuck code cowsay dmidecode docker
+pacman -S bash-completion openssh bind-tools thefuck code cowsay dmidecode docker lsof
 
 # install graphic packets
 pacman -S eog gimp darktable imagemagick
@@ -175,3 +174,21 @@ yay -S snapd
 systemctl enable snapd
 systemctl start snapd
 snap install foobar2000
+
+# install and configure automatic btrfs snapshots
+pacman -S snapper
+systemctl start snapper-timeline.timer
+systemctl enable snapper-timeline.timer
+systemctl start snapper-cleanup.timer
+systemctl enable snapper-cleanup.timer
+
+umount /.snapshots
+rmdir /.snapshots
+snapper -c root create-config /
+btrfs subvolume delete /.snapshots
+mkdir /.snapshots
+mount /.snapshots
+
+snapper -c root create --description clean_install
+
+yay -S snap-pac snap-pac-grub grub-btrfs
