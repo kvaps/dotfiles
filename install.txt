@@ -1,0 +1,177 @@
+https://ctlos.github.io/wiki/btrfs/btrfs-part1/
+
+# enable networking
+rfkill unblock all
+wifi-menu
+
+# prepare partitioning
+cfdisk /dev/nvme0n1
+mkfs.vfat /dev/nvme0n1p1
+mkfs.btrfs /dev/nvme0n1p2
+
+mount /dev/nvme0n1p2 /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@boot
+btrfs subvolume create /mnt/@home
+umount /mnt
+mount -o subvol=@,relatime,compress=lzo,space_cache,autodefrag /dev/nvme0n1p2 /mnt/
+mkdir -p /mnt/boot/efi /mnt/home
+mount -o subvol=@boot,relatime,compress=lzo,space_cache,autodefrag /dev/nvme0n1p2 /mnt/boot
+mount /dev/nvme0n1p1 /mnt/boot/home
+mount -o subvol=@home,relatime,compress=lzo,space_cache,autodefrag /dev/nvme0n1p2 /mnt/home
+
+
+# install base system
+pacstrap /mnt base base-devel linux linux-firmware
+
+# generate fstab
+genfstab -U /mnt >> /mnt/etc/fstab
+
+# chroot
+arch-chroot /mnt
+
+# install base packages
+git sudo vim zsh
+
+# Add user
+useradd -m -G wheel,audio,video,storage,lp,power -s /bin/zsh kvaps
+
+# Set passwords
+passwd
+passwd kvaps
+
+# Configure sudo
+EDITOR=vim visudo
+#%wheel ALL=(ALL) ALL
+
+# setup hostname
+cat /etc/hostname
+kvaps-laptop
+
+# setup locale
+cat /etc/locale.gen
+en_US.UTF-8
+en_DK.UTF-8
+ru_RU.UTF-8
+
+locale-gen
+
+cat /etc/locale.conf
+LANG=en_US.UTF-8
+LC_TIME=en_DK.UTF-8
+LC_CTYPE=en_US.UTF-8
+
+# setup font
+cat /etc/vconsole.conf
+KEYMAP=ruwin_cplk-UTF-8
+FONT=cyr-sun16
+
+# setup timezone
+ln -sf /usr/share/zoneinfo/Europe/Prague /etc/localtime
+
+# install NetworkManager
+pacman -S networkmanager network-manager-applet networkmanager-openvpn
+systemctl enable NetworkManager
+
+# install YaY
+su kvaps
+cd /tmp
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+# install wifi-drivers
+rtl8821ce-dkms-git
+dkms status # should be installed
+
+# create initcpio image
+pacman -S btrfs-progs
+mkinitcpio -p linux
+
+# install grub
+pacman -S grub efibootmgr
+grub-install
+vim /etc/default/grub
+#GRUB_TIMEOUT=1
+#GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 acpi_backlight=video pci=noaer rfkill.default_state=1"
+grub-mkconfig -o /boot/grub/grub.cfg
+
+
+# umount and reboot
+umount -R /mnt
+reboot
+
+# -------------------------------------------
+
+# start network
+rfkill unblock all
+nmcli d wifi list
+nmcli d wifi connect <WiFiSSID> password <WiFiPassword>
+
+# install xorg
+pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xf86-video-amdgpu
+
+# install backlight
+pacman -S acpilight
+cat /etc/udev/rules.d/backlight.rules
+ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
+ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
+
+# install pulseaudio and bluetooth
+pacman -S pulseaudio pavucontrol blueman pulseaudio-bluetooth
+systemctl start bluetooth
+
+# install fonts
+pacman -S ttf-dejavu
+yay -S powerline-fonts-git
+
+# install proprietary amd driver
+vim /etc/pacman.conf # uncoment multilib
+yay -S \
+  amf-amdgpu-pro \
+  hip-amdgpu-pro \
+  amdgpu-pro-libgl \
+  lib32-amdgpu-pro-libgl \
+  opencl-amdgpu-pro-comgr \
+  opencl-amdgpu-pro-pal \
+  opencl-amdgpu-pro-orca \
+  lib32-opencl-amdgpu-pro-orca \
+  roct-amdgpu-pro \
+  vulkan-amdgpu-pro \
+  lib32-vulkan-amdgpu-pro
+
+# install displaylink driver
+yay -S displaylink evdi-git
+dkms status
+systemctl enable displaylink
+systemctl start displaylink
+
+# setup xorg configs
+git clone https://github.com/kvaps/dotfiles
+cp dotfiles/X11/xorg.conf.g/* /etc/X11/xorg.conf.d/
+
+# install window manager and useful tools/widgets
+pacman -S awesome i3lock arandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme
+
+# install firefox
+pacman -S firefox
+
+# install filemanagers and the rest
+pacman -S dolphin thunar filezilla gvfs-mtp xdg-user-dirs keepassxc
+yay -S dropbox
+xdg-user-dirs-update
+
+# install useful tools
+pacman -S bash-completion openssh bind-tools thefuck code cowsay dmidecode docker
+
+# install graphic packets
+pacman -S eog gimp darktable imagemagick
+
+# install video packets
+pacman -S mpv vlc
+
+# install snap and foobar2000
+yay -S snapd
+systemctl enable snapd
+systemctl start snapd
+snap install foobar2000
