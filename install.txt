@@ -108,7 +108,7 @@ nmcli d wifi list
 nmcli d wifi connect <WiFiSSID> password <WiFiPassword>
 
 # install xorg
-pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu
+pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot
 
 # install backlight
 pacman -S acpilight
@@ -161,16 +161,39 @@ yay -S dropbox
 xdg-user-dirs-update
 
 # install useful tools
-pacman -S bash-completion openssh bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip
+pacman -S bash-completion openssh bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync
+
+# install and configure automatic btrfs snapshots
+pacman -S snapper
+systemctl start snapper-timeline.timer
+systemctl enable snapper-timeline.timer
+systemctl start snapper-cleanup.timer
+systemctl enable snapper-cleanup.timer
+
+umount /.snapshots
+rmdir /.snapshots
+snapper -c root create-config /
+btrfs subvolume delete /.snapshots
+mkdir /.snapshots
+mount /.snapshots
+
+snapper -c root create --description clean_install
+
+yay -S snap-pac snap-pac-grub grub-btrfs
 
 
 # -------------------------------------------
 
 
+# install ansible and modules
+pacman -S ansible python-jmespath python-netaddr
+yay -S python-openshift
+
 # install docker and kubernetes tools
 pacman -S docker kubectl
 systemctl enable docker
 systemctl start docker
+usermod -a -G docker kvaps
 
 yay -S kubernetes-helm-bin
 
@@ -193,24 +216,6 @@ yay -S snapd
 systemctl enable snapd
 systemctl start snapd
 snap install foobar2000
-
-# install and configure automatic btrfs snapshots
-pacman -S snapper
-systemctl start snapper-timeline.timer
-systemctl enable snapper-timeline.timer
-systemctl start snapper-cleanup.timer
-systemctl enable snapper-cleanup.timer
-
-umount /.snapshots
-rmdir /.snapshots
-snapper -c root create-config /
-btrfs subvolume delete /.snapshots
-mkdir /.snapshots
-mount /.snapshots
-
-snapper -c root create --description clean_install
-
-yay -S snap-pac snap-pac-grub grub-btrfs
 
 
 # install cups and printer drivers
