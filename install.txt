@@ -161,7 +161,26 @@ yay -S dropbox
 xdg-user-dirs-update
 
 # install useful tools
-pacman -S bash-completion openssh bind-tools thefuck code cowsay dmidecode docker lsof
+pacman -S bash-completion openssh bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip
+
+
+# -------------------------------------------
+
+
+# install docker and kubernetes tools
+pacman -S docker kubectl
+systemctl enable docker
+systemctl start docker
+
+yay -S kubernetes-helm-bin
+
+curl -LO https://github.com/kvaps/kubectl-use/raw/master/kubectl-use
+chmod +x ./kubectl-use
+sudo mv ./kubectl-use /usr/local/bin/kubectl-use
+
+cat qbec-linux-amd64.tar.gz | tar -xzvf -
+sudo mv qbec jsonnet-qbec /usr/local/bin/
+
 
 # install graphic packets
 pacman -S eog gimp darktable imagemagick
@@ -192,3 +211,13 @@ mount /.snapshots
 snapper -c root create --description clean_install
 
 yay -S snap-pac snap-pac-grub grub-btrfs
+
+
+# install cups and printer drivers
+pacman -S cups
+echo 'xdg-open http://localhost:631/' > /usr/local/bin/cups
+chmod +x /usr/local/bin/cups
+systemctl start org.cups.cupsd.service
+systemctl enable org.cups.cupsd.service
+
+yay -S cndrvcups-lb-bin
