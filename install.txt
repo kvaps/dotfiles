@@ -90,6 +90,7 @@ mkinitcpio -p linux
 # install grub
 pacman -S grub efibootmgr
 grub-install
+grub-install --removable
 vim /etc/default/grub
 #GRUB_TIMEOUT=1
 #GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 acpi_backlight=video pci=noaer rfkill.default_state=1"
