@@ -30,7 +30,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
 # install base packages
-git sudo vim zsh
+git sudo gvim zsh
 
 # Add user
 useradd -m -G wheel,audio,video,storage,lp,power -s /bin/zsh kvaps
@@ -162,7 +162,7 @@ yay -S dropbox
 xdg-user-dirs-update
 
 # install useful tools
-pacman -S bash-completion openssh bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync
+pacman -S bash-completion man openssh git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync
 
 # install and configure automatic btrfs snapshots
 pacman -S snapper
@@ -191,7 +191,7 @@ pacman -S ansible python-jmespath python-netaddr
 yay -S python-openshift
 
 # install docker and kubernetes tools
-pacman -S docker kubectl
+pacman -S docker kubectl skopeo
 systemctl enable docker
 systemctl start docker
 usermod -a -G docker kvaps
