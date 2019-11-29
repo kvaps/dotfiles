@@ -11,12 +11,12 @@
 	helper = cache --timeout=3600
 [url "git@github.com:kvaps"]
 	insteadOf = https://github.com/kvaps
+[url "git@github.com:ltsp"]
+	insteadOf = https://github.com/ltsp
+[url "git@github.com:opennebula"]
+	insteadOf = https://github.com/opennebula
 [url "ssh://git@gitlab.wedos.org/"]
     insteadOf = https://gitlab.wedos.org/
-[url "ssh://git@gitlab.wedos.org/"]
-    insteadOf = ssh://git@gitlab.opennebula.wedos.cloud/
-[url "ssh://git@gitlab.wedos.org/"]
-    insteadOf = https://gitlab.opennebula.wedos.cloud/
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

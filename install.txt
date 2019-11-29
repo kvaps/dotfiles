@@ -87,8 +87,8 @@ dkms status # should be installed
 pacman -S btrfs-progs
 mkinitcpio -p linux
 
-# install grub
-pacman -S grub efibootmgr
+# install grub and microcode
+pacman -S grub efibootmgr amd-ucode
 grub-install
 grub-install --removable
 vim /etc/default/grub
@@ -152,6 +152,7 @@ cp dotfiles/X11/xorg.conf.g/* /etc/X11/xorg.conf.d/
 
 # install window manager and useful tools/widgets
 pacman -S awesome i3lock arandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme
+yay -S gatotray
 
 # install firefox
 pacman -S firefox
@@ -161,8 +162,11 @@ pacman -S dolphin thunar filezilla gvfs-mtp xdg-user-dirs keepassxc
 yay -S dropbox
 xdg-user-dirs-update
 
+# install office things
+pacman -S libreoffice okular
+
 # install useful tools
-pacman -S bash-completion man openssh git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync
+pacman -S bash-completion man openssh jq git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync pv pwgen whois
 
 # install and configure automatic btrfs snapshots
 pacman -S snapper
@@ -185,6 +189,8 @@ yay -S snap-pac snap-pac-grub grub-btrfs
 
 # -------------------------------------------
 
+# install mikrotik winbox
+yay -S winbox
 
 # install ansible and modules
 pacman -S ansible python-jmespath python-netaddr

@@ -14,6 +14,7 @@ nm-applet &
 columeicon &
 cbatticon &
 kmix &
+gatotray &
 blueman-applet &
 dropbox &
 syncthing-gtk -ms &

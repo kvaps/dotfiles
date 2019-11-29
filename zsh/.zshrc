@@ -236,6 +236,9 @@ export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN"
 export LESS="-F -X $LESS"
 
+# kubectl-krew
+export PATH="$PATH:${HOME}/.krew/bin"
+
 # Colorize output
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
