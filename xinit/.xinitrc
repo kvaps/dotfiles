@@ -11,11 +11,11 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources &
 nm-applet &
-columeicon &
 cbatticon &
 kmix &
 gatotray &
 blueman-applet &
 dropbox &
 syncthing-gtk -ms &
+simplescreenrecorder --start-hidden &
 exec awesome

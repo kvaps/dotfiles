@@ -218,11 +218,8 @@ pacman -S eog gimp darktable imagemagick
 # install video packets
 pacman -S mpv vlc
 
-# install snap and foobar2000
-yay -S snapd
-systemctl enable snapd
-systemctl start snapd
-snap install foobar2000
+# install deadbeef and audioplugins
+sudo pacman -S deadbeef faad2 ffmpeg flac imlib2 libcddb libmad libsamplerate libsndfile libvorbis libx11 libzip mpg123 wavpack nmap
 
 
 # install cups and printer drivers
