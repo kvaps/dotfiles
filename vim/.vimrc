@@ -16,16 +16,17 @@ autocmd VimEnter *
 
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
-"Plug 'Lokaltog/vim-powerline'
 Plug 'vim-airline/vim-airline'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Shougo/neocomplete.vim', { 'do': 'go get -u github.com/mdempsky/gocode' }
 Plug 'google/vim-jsonnet'
+Plug '907th/vim-auto-save'
+Plug 'kamykn/spelunker.vim'
 call plug#end()
 
-if ! empty(glob('.vim/plugged/molokai/colors/molokai.vim'))
+if ! empty(glob('~/.vim/plugged/molokai/colors/molokai.vim'))
   colorscheme molokai
   let g:molokai_original = 1
   let g:rehash256 = 1
@@ -78,6 +79,9 @@ map <S-Insert>		"+gP
 "cmap <C-V>		<C-R>+
 cmap <S-Insert>	<C-R>+
 
+" Quick save
+noremap <Leader>s :update<CR>
+
 " Включаем поддержку системного буфера
 set clipboard=unnamedplus
 
@@ -86,6 +90,16 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" Spellchecking setting
+let g:enable_spelunker_vim = 0
+
+" Enable autosave feature for marp (https://marp.app/)
+augroup ft_markdown
+  au!
+  au FileType markdown let b:auto_save = 1
+  au FileType markdown let b:enable_spelunker_vim = 1
+  au FileType markdown silent TableModeEnable
+augroup END
 
 " neocomplete settings
 
