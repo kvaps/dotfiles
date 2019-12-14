@@ -9,10 +9,10 @@ export ZSH="/home/kvaps/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 if [ "$TERM" != "linux" ]; then
-  #ZSH_THEME="powerlevel9k/powerlevel9k"
   ZSH_THEME="powerlevel10k/powerlevel10k"
 else
-  ZSH_THEME="agnoster"
+  #ZSH_THEME="jnrowe"
+  ZSH_THEME="gentoo"
 fi
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
