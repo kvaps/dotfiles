@@ -7,6 +7,7 @@ fi
 
 export EDITOR="vim"
 export BROWSER="firefox"
+export TERMINAL="xtrem"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources &

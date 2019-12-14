@@ -33,7 +33,8 @@ if ! empty(glob('~/.vim/plugged/molokai/colors/molokai.vim'))
 endif
 
 set background=dark
-set guifont=Monospace:h10:cRUSSIAN
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+set go=c
 let g:airline_powerline_fonts = 1
 
 set number
