@@ -258,8 +258,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
-    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("i3lock -c 000000") end),
-
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
@@ -287,6 +285,9 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight +20") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -20") end),
     awful.key({ }, "XF86WLAN", function () awful.util.spawn("if [ $(cat /sys/class/rfkill/rfkill1/soft) -eq 1 ]; then rfkill unblock 1; else rfkill block 1; fi") end), 
+    awful.key({ }, "XF86PowerOff", function () awful.util.spawn("i3lock-fancy") end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("i3lock-fancy") end),
+    awful.key({ "Shift" }, "XF86PowerOff", function () awful.util.spawn("sh -c 'i3lock-fancy && systemctl suspend'") end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,

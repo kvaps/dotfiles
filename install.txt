@@ -150,9 +150,12 @@ systemctl start displaylink
 git clone https://github.com/kvaps/dotfiles
 cp dotfiles/X11/xorg.conf.g/* /etc/X11/xorg.conf.d/
 
+# Ignore powerbutton
+echo 'HandlePowerKey=ignore' | sudo tee -a /etc/systemd/logind.conf
+
 # install window manager and useful tools/widgets
 pacman -S awesome i3lock arandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme
-yay -S gatotray
+yay -S gatotray i3lock-fancy
 
 # install firefox
 pacman -S firefox
