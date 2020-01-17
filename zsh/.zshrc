@@ -92,6 +92,7 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'.
 
 # fish like completion
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -256,3 +257,8 @@ export ONE_XMLRPC=https://api.opennebula.wedos.cloud/RPC2
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# Red stderr
+if [ -f /usr/lib/libstderred.so ] && [ -z "$LD_PRELOAD" ]; then
+  export LD_PRELOAD="/usr/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+fi
