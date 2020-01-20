@@ -255,6 +255,9 @@ alias gs='git status'
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin
 export ONE_XMLRPC=https://api.opennebula.wedos.cloud/RPC2
 
+# Kubebuilder
+export PATH=$PATH:/usr/local/kubebuilder/bin
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 

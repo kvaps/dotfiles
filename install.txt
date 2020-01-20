@@ -169,7 +169,7 @@ xdg-user-dirs-update
 pacman -S libreoffice okular
 
 # install useful tools
-pacman -S bash-completion man openssh jq git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync pv pwgen whois usbutils
+pacman -S bash-completion man openssh jq git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync pv pwgen whois usbutils dhcpcd
 
 # install and configure automatic btrfs snapshots
 pacman -S snapper
