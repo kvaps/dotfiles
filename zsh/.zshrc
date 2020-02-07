@@ -245,6 +245,7 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
 alias ke='kubectl exec -ti'
+alias ku='kubectl use'
 alias q='qbec'
 alias qs='qbec show'
 alias qa='qbec apply'
