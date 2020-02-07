@@ -146,6 +146,11 @@ dkms status
 systemctl enable displaylink
 systemctl start displaylink
 
+# Enable Early KMS start
+vim /etc/mkinitcpio.conf
+#MODULES=(amdgpu)
+mkinitcpio -p linux
+
 # setup xorg configs
 git clone https://github.com/kvaps/dotfiles
 cp dotfiles/X11/xorg.conf.g/* /etc/X11/xorg.conf.d/
