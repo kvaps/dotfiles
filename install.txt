@@ -111,6 +111,9 @@ nmcli d wifi connect <WiFiSSID> password <WiFiPassword>
 # install xorg
 pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot
 
+# install termite
+termite 
+
 # install backlight
 pacman -S acpilight
 cat /etc/udev/rules.d/backlight.rules
@@ -123,7 +126,7 @@ systemctl start bluetooth
 
 # install fonts
 pacman -S ttf-dejavu
-yay -S powerline-fonts-git
+yay -S nerd-fonts-dejavu-complete
 
 # install proprietary amd driver
 vim /etc/pacman.conf # uncoment multilib
