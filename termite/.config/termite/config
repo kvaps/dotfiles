@@ -44,8 +44,8 @@ scrollbar = off
 [colors]
 # If both of these are unset, cursor falls back to the foreground color,
 # and cursor_foreground falls back to the background color.
-#cursor = #dcdccc
-#cursor_foreground = #dcdccc
+cursor = #ebdbb2
+cursor_foreground = #000000
 
 foreground = #ebdbb2
 #foreground_bold = #ffffff
@@ -55,7 +55,7 @@ background = #171717
 #background = rgba(63, 63, 63, 0.8)
 
 # If unset, will reverse foreground and background
-highlight = #2f2f2f
+#highlight = #ebdbb2
 
 # Colors from color0 to color254 can be set
 color0 = #282828
