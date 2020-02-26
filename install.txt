@@ -242,4 +242,6 @@ chmod +x /usr/local/bin/cups
 systemctl start org.cups.cupsd.service
 systemctl enable org.cups.cupsd.service
 
+echo a4 > /etc/papersize
+
 yay -S cndrvcups-lb-bin
