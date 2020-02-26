@@ -109,7 +109,7 @@ nmcli d wifi list
 nmcli d wifi connect <WiFiSSID> password <WiFiPassword>
 
 # install xorg
-pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot
+pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot xsel
 
 # install termite
 termite 
@@ -162,8 +162,15 @@ cp dotfiles/X11/xorg.conf.g/* /etc/X11/xorg.conf.d/
 echo 'HandlePowerKey=ignore' | sudo tee -a /etc/systemd/logind.conf
 
 # install window manager and useful tools/widgets
-pacman -S awesome i3lock arandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme
-yay -S gatotray i3lock-fancy
+pacman -S awesome arandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme translate-shell
+
+# Install i3lock with keyboard indicator
+git clone https://github.com/cac03/i3lock
+cd i3lock
+make install
+
+# Download i3lock multimonitor wrapper script
+git clone https://github.com/ShikherVerma/i3lock-multimonitor /home/kvaps/git/i3lock-multimonitor
 
 # install firefox
 pacman -S firefox
