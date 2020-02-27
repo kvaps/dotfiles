@@ -164,13 +164,8 @@ echo 'HandlePowerKey=ignore' | sudo tee -a /etc/systemd/logind.conf
 # install window manager and useful tools/widgets
 pacman -S awesome arandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme translate-shell
 
-# Intall i3lock-multimonitor script
-yay -S i3lock-multimonitor
-
-# Install i3lock with keyboard indicator
-git clone https://github.com/cac03/i3lock
-cd i3lock
-make install
+# Install i3lock with keyboard indicator and i3lock-multimonitor wrapper script
+yay -S i3lock-cac03-git i3lock-multimonitor
 
 # install firefox
 pacman -S firefox
