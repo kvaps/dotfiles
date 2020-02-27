@@ -106,6 +106,7 @@ KUBE_PS1_SEPARATOR=""
 KUBE_PS1_SYMBOL_ENABLE="false"
 KUBE_PS1_DIVIDER=" "
 
+typeset -g POWERLEVEL9K_MODE=nerdfont-complete
 typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%233F\uE0B1'
 typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%233F\uE0B3'
 typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\uE0B0'
@@ -160,6 +161,11 @@ typeset -g POWERLEVEL9K_DIR_HYPERLINK=false
 typeset -g POWERLEVEL9K_DIR_SHOW_WRITABLE=true
 typeset -g POWERLEVEL9K_DIR_CLASSES=()
 
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=3
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=234
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=234
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=3
+typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
 
 #typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%B%n%b'
@@ -170,7 +176,7 @@ POWERLEVEL9K_CUSTOM_KUBE_PS1='kube_ps1'
 # one line
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv background_jobs)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_kube_ps1 vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status kubecontext vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time kubecontext vcs)
 
 # two lines
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv newline prompt_char)
@@ -265,4 +271,8 @@ export PATH=$PATH:/usr/local/kubebuilder/bin
 # Red stderr
 if [ -f /usr/lib/libstderred.so ] && [ -z "$LD_PRELOAD" ]; then
   export LD_PRELOAD="/usr/lib/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+fi
+
+if [ "$TERM" = xterm-termite ]; then
+  export TERM=xterm-256color
 fi
