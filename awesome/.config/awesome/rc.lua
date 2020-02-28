@@ -492,15 +492,12 @@ awful.rules.rules = {
       properties = { tag = "www" } },
     { rule = { class = "Firefox" },
       properties = { tag = "www" } },
-    { rule = { class = "Thunderbird" },
-      properties = { tag = "email" } },
     { rule = { class = "Deadbeef" },
       properties = { tag = " ♫ " } },
     { rule = { class = "keepassxc" },
-      properties = { tag = "keepass" } },
+      properties = { tag = " ✕5 " } },
     { rule = { class = "KeePass" },
-      properties = { tag = "keepass" } },
-
+      properties = { tag = " ✕5 " } },
 }
 -- }}}
 
