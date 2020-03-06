@@ -162,7 +162,7 @@ cp dotfiles/X11/xorg.conf.g/* /etc/X11/xorg.conf.d/
 echo 'HandlePowerKey=ignore' | sudo tee -a /etc/systemd/logind.conf
 
 # install window manager and useful tools/widgets
-pacman -S awesome arandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme translate-shell
+pacman -S awesome arandr autorandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme translate-shell
 
 # Install i3lock with keyboard indicator and i3lock-multimonitor wrapper script
 yay -S i3lock-cac03-git i3lock-multimonitor
@@ -179,7 +179,7 @@ xdg-user-dirs-update
 pacman -S libreoffice okular
 
 # install useful tools
-pacman -S bash-completion man openssh jq git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync pv pwgen whois usbutils dhcpcd
+pacman -S bash-completion man openssh jq git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync pv pwgen whois usbutils dhcpcd traceroute
 
 # install and configure automatic btrfs snapshots
 pacman -S snapper
