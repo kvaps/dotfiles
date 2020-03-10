@@ -1,0 +1,79 @@
+artwork.filemask *cover*.jpg;*front*.jpg;*folder*.jpg;*cover*.png;*front*.png;*folder*.png
+cli_add_playlist_name Default
+deadbeef_version 1.8.2
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } tabbed_playlist hideheaders=0 width=1918 {} } 
+gtkui.override_bar_colors 0
+gtkui.statusbar.visible 1
+gtkui.tabscroll 0
+gtkui.titlebar_playing_tf %artist% - %title% - DeaDBeeF-%_deadbeef_version%
+gtkui.titlebar_stopped_tf DeaDBeeF-%_deadbeef_version%
+gui_plugin GTK3
+hotkey.key01 "Ctrl f" 0 0 find
+hotkey.key02 "Ctrl o" 0 0 open_files
+hotkey.key03 "Ctrl n" 0 0 new_playlist
+hotkey.key04 "Ctrl a" 0 0 select_all
+hotkey.key05 "Escape" 0 0 deselect_all
+hotkey.key06 "Ctrl m" 0 0 toggle_stop_after_current
+hotkey.key07 "Ctrl j" 0 0 jump_to_current_track
+hotkey.key08 "F1" 0 0 help
+hotkey.key09 "Delete" 1 0 remove_from_playlist
+hotkey.key10 "Ctrl w" 0 0 remove_current_playlist
+hotkey.key11 "Alt Return" 1 0 track_properties
+hotkey.key12 "Return" 0 0 play
+hotkey.key13 "Ctrl p" 0 0 toggle_pause
+hotkey.key14 "Alt 1" 0 0 playlist1
+hotkey.key15 "Alt 2" 0 0 playlist2
+hotkey.key16 "Alt 3" 0 0 playlist3
+hotkey.key17 "Alt 4" 0 0 playlist4
+hotkey.key18 "Alt 5" 0 0 playlist5
+hotkey.key19 "Alt 6" 0 0 playlist6
+hotkey.key20 "Alt 7" 0 0 playlist7
+hotkey.key21 "Alt 8" 0 0 playlist8
+hotkey.key22 "Alt 9" 0 0 playlist9
+hotkey.key23 "Alt 0" 0 0 playlist10
+hotkey.key24 "z" 0 0 prev
+hotkey.key25 "x" 0 0 play
+hotkey.key26 "c" 0 0 toggle_pause
+hotkey.key27 "v" 0 0 stop
+hotkey.key28 "b" 0 0 next
+hotkey.key29 "n" 0 0 playback_random
+hotkey.key30 "Ctrl k" 0 0 toggle_stop_after_album
+hotkey.key31 "space" 0 0 play_pause
+hotkey.key32 "Ctrl q" 1 0 toggle_in_playback_queue
+hotkeys_created 1
+logwindow.geometry.h 200
+logwindow.geometry.w 400
+logwindow.geometry.x 40
+logwindow.geometry.y 40
+mainwin.geometry.h 1058
+mainwin.geometry.w 1918
+mainwin.geometry.x 0
+mainwin.geometry.y 20
+network.proxy.port 8080
+output_plugin pulseaudio
+playback.loop 0
+playback.order 0
+playback.volume -9.561244
+playlist.current 1
+playlist.cursor.0 2
+playlist.cursor.1 1
+playlist.scroll.0 -2
+playlist.scroll.1 0
+playlist.scroll.cursorfollowplayback 1
+playlist.tab.00000 T.BIRD
+playlist.tab.00001 Default
+prefwin.geometry.h 528
+prefwin.geometry.w 665
+prefwin.geometry.x 632
+prefwin.geometry.y 284
+resume.paused 0
+resume.playlist 1
+resume.position 187.19039
+resume.track 0
+streamer.samplerate 44100
+streamer.samplerate_mult_44 44100
+streamer.samplerate_mult_48 48000
+trkproperties.geometry.h 400
+trkproperties.geometry.w 400
+trkproperties.geometry.x 176
+trkproperties.geometry.y 279
