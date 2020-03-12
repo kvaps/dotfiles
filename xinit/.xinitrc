@@ -18,5 +18,5 @@ gatotray &
 blueman-applet &
 dropbox &
 syncthing-gtk -ms &
-simplescreenrecorder --start-hidden &
+TogglDesktop -b &
 exec awesome

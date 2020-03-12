@@ -237,6 +237,9 @@ sudo pacman -S deadbeef faad2 ffmpeg flac imlib2 libcddb libmad libsamplerate li
 # install simplescreenrecorder
 pacman -S simplescreenrecorder
 
+# install time tracker
+yay -S toggldesktop
+
 # install cups and printer drivers
 pacman -S cups
 echo 'xdg-open http://localhost:631/' > /usr/local/bin/cups
