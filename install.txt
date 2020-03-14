@@ -209,6 +209,9 @@ yay -S winbox
 pacman -S ansible python-jmespath python-netaddr
 yay -S python-openshift
 
+# install opennebula tools
+yay -S opennebula-tools
+
 # install docker and kubernetes tools
 pacman -S docker kubectl skopeo
 systemctl enable docker
