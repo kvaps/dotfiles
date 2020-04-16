@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+local screenshot = require("screenshot")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -288,8 +289,20 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86PowerOff", function () awful.util.spawn("i3lock --24 -t -i /home/kvaps/Pictures/wallpaper.png") end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("i3lock --24 -t -i /home/kvaps/Pictures/wallpaper.png") end),
     awful.key({ "Shift" }, "XF86PowerOff", function () awful.util.spawn("sh -c 'i3lock --24 -t -i /home/kvaps/Pictures/wallpaper.png & systemctl suspend'") end),
+
+    -- Translate
     awful.key({ modkey,           }, "`",  function () awful.util.spawn("sh -c 'notify-send -u low \"$(xsel -o | trans -b :ru)\" '") end),
     awful.key({ modkey, "Shift"   }, "`",  function () awful.util.spawn("sh -c 'notify-send -u low \"$(xsel -o | trans -b :en)\" '") end),
+
+    -- Screenshot
+    awful.key({ }, "Print", scrot_full,
+      {description = "Take a screenshot of entire screen", group = "screenshot"}),
+    awful.key({ modkey, }, "Print", scrot_selection,
+      {description = "Take a screenshot of selection", group = "screenshot"}),
+    awful.key({ "Shift" }, "Print", scrot_window,
+      {description = "Take a screenshot of focused window", group = "screenshot"}),
+    awful.key({ "Ctrl" }, "Print", scrot_delay,
+      {description = "Take a screenshot of delay", group = "screenshot"}),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,

@@ -109,7 +109,7 @@ nmcli d wifi list
 nmcli d wifi connect <WiFiSSID> password <WiFiPassword>
 
 # install xorg
-pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot xsel
+pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot xsel xdotool
 
 # install termite
 termite 
