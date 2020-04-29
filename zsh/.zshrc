@@ -83,7 +83,6 @@ plugins=(
   helm
   ansible
   docker
-  ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -257,6 +256,8 @@ alias qs='qbec show'
 alias qa='qbec apply'
 alias qd='qbec diff'
 alias gs='git status'
+alias linstor='kubectl exec -n linstor linstor-controller-0 -ti -c linstor-controller -- linstor'
+alias oneexec='kubectl exec -ti -n opennebula `k get pod -l role=leader -n opennebula -o name` -c oned -- bash'
 
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin
