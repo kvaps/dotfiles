@@ -594,7 +594,8 @@ do
     "killall gatotray",
     "gatotray",
     "blueman-applet",
-    "keepassxc"
+    "keepassxc",
+    "dropbox"
   }
 
   for _,i in pairs(cmds) do
