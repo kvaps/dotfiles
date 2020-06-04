@@ -24,6 +24,9 @@ Plug 'Shougo/neocomplete.vim', { 'do': 'go get -u github.com/mdempsky/gocode' }
 Plug 'google/vim-jsonnet'
 Plug '907th/vim-auto-save'
 Plug 'kamykn/spelunker.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
 call plug#end()
 
 if ! empty(glob('~/.vim/plugged/molokai/colors/molokai.vim'))
