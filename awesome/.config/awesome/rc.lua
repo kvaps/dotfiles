@@ -529,6 +529,22 @@ client.connect_signal("manage", function (c)
     end
 end)
 
+-- on screen remove:
+-- move all clients to next screen
+-- use the same tag names
+tag.connect_signal("request::screen", function(t)
+    clients = t:clients()
+    for s in screen do
+         if s ~= t.screen then
+ 	    local new_t = awful.tag.find_by_name(s, t.name)
+            for foo, c in ipairs(clients) do
+               c:move_to_tag(new_t)
+            end
+            return
+         end
+    end
+end);
+
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
     -- buttons for the titlebar
