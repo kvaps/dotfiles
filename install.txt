@@ -180,7 +180,7 @@ yay -S i3lock-cac03-git
 pacman -S firefox
 
 # install filemanagers and the rest
-pacman -S dolphin thunar filezilla gvfs-mtp android-udev xdg-user-dirs keepassxc
+pacman -S dolphin konsole thunar filezilla gvfs-mtp android-udev xdg-user-dirs keepassxc
 yay -S dropbox
 xdg-user-dirs-update
 
