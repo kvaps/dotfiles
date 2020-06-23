@@ -255,9 +255,17 @@ alias q='qbec'
 alias qs='qbec show'
 alias qa='qbec apply'
 alias qd='qbec diff'
+alias gd='git diff'
 alias gs='git status'
+alias gl='git log --graph --pretty --decorate --all'
+alias t='terraform'
+alias ta='terraform apply'
+alias tp='terraform plan'
 alias linstor='kubectl exec -n linstor linstor-controller-0 -ti -c linstor-controller -- linstor'
 alias oneexec='kubectl exec -ti -n opennebula `k get pod -l role=leader -n opennebula -o name` -c oned -- bash'
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff='nvim -d'
 
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin

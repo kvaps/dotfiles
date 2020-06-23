@@ -1,5 +1,5 @@
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="firefox"
-export TERMINAL="xtrem"
+export TERMINAL="termite"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 eval "$(ssh-agent -s)"

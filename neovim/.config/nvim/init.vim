@@ -9,10 +9,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " automatic install plugins
-autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
+let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
+if !filereadable(autoload_plug_path)
+  silent execute '!curl -fLo ' . autoload_plug_path . '  --create-dirs 
+      \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+unlet autoload_plug_path
 
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
@@ -27,7 +30,11 @@ Plug 'kamykn/spelunker.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+let g:terraform_fmt_on_save=1
+let g:go_fmt_command = "goimports"
 
 if ! empty(glob('~/.vim/plugged/molokai/colors/molokai.vim'))
   colorscheme molokai
