@@ -30,7 +30,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
 # install base packages (npm is needed for coc)
-git sudo neovim zsh npm
+git sudo gvim zsh npm
 
 # Add user
 useradd -m -G wheel,audio,video,storage,lp,power -s /bin/zsh kvaps
