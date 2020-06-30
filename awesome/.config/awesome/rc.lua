@@ -307,6 +307,8 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "Return", function () awful.util.spawn("sh -c 'termite -d \"$(xcwd)\"'") end,
+              {description = "open a terminal on current path", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
@@ -501,16 +503,14 @@ awful.rules.rules = {
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
 
-    { rule = { class = "Vivaldi" },
-      properties = { tag = "www" } },
-    { rule = { class = "Firefox" },
-      properties = { tag = "www" } },
+    { rule = { class = "firefox" },
+      properties = { tag = " www " } },
     { rule = { class = "Deadbeef" },
       properties = { tag = " ♫ " } },
-    { rule = { class = "keepassxc" },
-      properties = { tag = " ✕5 " } },
+    { rule = { class = "Audacious" },
+      properties = { tag = " ♫ " } },
     { rule = { class = "KeePass" },
-      properties = { tag = " ✕5 " } },
+      properties = { tag = " ✕5 ", screen = 1, switchtotag = true } },
 }
 -- }}}
 
