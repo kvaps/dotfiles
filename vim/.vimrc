@@ -27,7 +27,10 @@ Plug 'kamykn/spelunker.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'jiangmiao/auto-pairs'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 if ! empty(glob('~/.vim/plugged/molokai/colors/molokai.vim'))
@@ -86,6 +89,9 @@ cmap <S-Insert>	<C-R>+
 
 " Quick save
 noremap <Leader>s :update<CR>
+
+" Force saving files that require root permission 
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Включаем поддержку системного буфера
 set clipboard=unnamedplus
