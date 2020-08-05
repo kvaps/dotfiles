@@ -264,6 +264,9 @@ alias tp='terraform plan'
 alias linstor='kubectl exec -n linstor linstor-controller-0 -ti -c linstor-controller -- linstor'
 alias oneexec='kubectl exec -ti -n opennebula `k get pod -l role=leader -n opennebula -o name` -c oned -- bash'
 
+# Helm template single file
+ht(){ awk -v f="$1$" '$0~f,/^---/'; }
+
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin
 export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
