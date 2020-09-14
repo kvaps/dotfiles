@@ -11,6 +11,8 @@
 	helper = cache --timeout=3600
 [url "git@github.com:kvaps"]
 	insteadOf = https://github.com/kvaps
+[url "git@github.com:wedos"]
+	insteadOf = https://github.com/wedos
 [url "git@github.com:ltsp"]
 	insteadOf = https://github.com/ltsp
 [url "git@github.com:opennebula"]
