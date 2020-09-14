@@ -264,6 +264,10 @@ alias tp='terraform plan'
 alias linstor='kubectl exec -n linstor linstor-controller-0 -ti -c linstor-controller -- linstor'
 alias oneexec='kubectl exec -ti -n opennebula `k get pod -l role=leader -n opennebula -o name` -c oned -- bash'
 
+if command -V kubectl-use >/dev/null; then
+  source <(kubectl-use -completion)
+fi
+
 # Helm template single file
 ht(){ awk -v f="$1$" '$0~f,/^---/'; }
 

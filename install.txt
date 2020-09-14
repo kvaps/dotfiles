@@ -93,7 +93,7 @@ grub-install
 grub-install --removable
 vim /etc/default/grub
 #GRUB_TIMEOUT=1
-#GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 acpi_backlight=video pci=noaer rfkill.default_state=1 processor.max_cstate=1"
+#GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 pci=noaer rfkill.default_state=1 processor.max_cstate=1"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 
@@ -186,10 +186,10 @@ yay -S dropbox
 xdg-user-dirs-update
 
 # install office things
-pacman -S libreoffice okular
+pacman -S libreoffice okular pdfarranger
 
 # install useful tools
-pacman -S bash-completion man openssh jq git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync pv pwgen whois usbutils dhcpcd traceroute
+pacman -S bash-completion man openssh jq git-crypt bind-tools thefuck code cowsay dmidecode lsof screen gpg zip unzip p7zip neofetch rsync pv pwgen whois usbutils dhcpcd traceroute tftp-hpa inotify-tools
 
 # install and configure automatic btrfs snapshots
 pacman -S snapper
@@ -228,15 +228,12 @@ systemctl enable docker
 systemctl start docker
 usermod -a -G docker kvaps
 
-yay -S kubernetes-helm-bin
+yay -S kubernetes-helm-bin qbec kubectl-krew
 
-curl -LO https://github.com/kvaps/kubectl-use/raw/master/kubectl-use
-chmod +x ./kubectl-use
-sudo mv ./kubectl-use /usr/local/bin/kubectl-use
-
-cat qbec-linux-amd64.tar.gz | tar -xzvf -
-sudo mv qbec jsonnet-qbec /usr/local/bin/
-
+kubectl krew index add kvaps https://github.com/kvaps/krew-index
+kubectl krew install kvaps/build
+kubectl krew install kvaps/node-shell
+kubectl krew install kvaps/use
 
 # install graphic packets
 pacman -S eog gimp darktable imagemagick
@@ -244,8 +241,8 @@ pacman -S eog gimp darktable imagemagick
 # install video packets
 pacman -S mpv vlc
 
-# install deadbeef and audioplugins
-sudo pacman -S deadbeef faad2 ffmpeg flac imlib2 libcddb libmad libsamplerate libsndfile libvorbis libx11 libzip mpg123 wavpack nmap
+# install audacious and audioplugins
+sudo pacman -S audacious faad2 ffmpeg flac imlib2 libcddb libmad libsamplerate libsndfile libvorbis libx11 libzip mpg123 wavpack nmap easytag python-mutagen
 
 # install simplescreenrecorder
 pacman -S simplescreenrecorder
