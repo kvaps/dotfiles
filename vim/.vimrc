@@ -27,11 +27,16 @@ Plug 'kamykn/spelunker.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-commentary'
 call plug#end()
+
+" Format shell on save
+let g:shfmt_extra_args = '-i 2'
+let g:shfmt_fmt_on_save = 1
 
 if ! empty(glob('~/.vim/plugged/molokai/colors/molokai.vim'))
   colorscheme molokai
