@@ -109,7 +109,7 @@ nmcli d wifi list
 nmcli d wifi connect <WiFiSSID> password <WiFiPassword>
 
 # install xorg
-pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot xsel xdotool
+pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot xsel xdotool mesa-demos
 yay -S xcwd-git
 
 # install lightdm and enable autologin
@@ -140,18 +140,10 @@ yay -S nerd-fonts-dejavu-complete
 
 # install proprietary amd driver
 vim /etc/pacman.conf # uncoment multilib
-yay -S \
-  amf-amdgpu-pro \
-  hip-amdgpu-pro \
-  amdgpu-pro-libgl \
-  lib32-amdgpu-pro-libgl \
-  opencl-amdgpu-pro-comgr \
-  opencl-amdgpu-pro-pal \
-  opencl-amdgpu-pro-orca \
-  lib32-opencl-amdgpu-pro-orca \
-  roct-amdgpu-pro \
-  vulkan-amdgpu-pro \
-  lib32-vulkan-amdgpu-pro
+git clone https://aur.archlinux.org/amdgpu-pro-installer.git
+cd amdgpu-pro-installer
+git checkout 370d39c6 # 19.30_934563-1
+makepkg -si
 
 # install displaylink driver
 yay -S displaylink evdi-git
@@ -181,7 +173,7 @@ yay -S i3lock-cac03-git
 pacman -S firefox
 
 # install filemanagers and the rest
-pacman -S dolphin konsole thunar filezilla gvfs-mtp android-udev xdg-user-dirs keepassxc
+pacman -S dolphin konsole thunar filezilla gvfs-mtp android-udev xdg-user-dirs keepassxc ark
 yay -S dropbox
 xdg-user-dirs-update
 
