@@ -83,6 +83,7 @@ plugins=(
   helm
   ansible
   docker
+  ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -127,8 +128,8 @@ typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=
 typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
 typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_{LEFT,RIGHT}_WHITESPACE=
 
-typeset -g POWERLEVEL9K_DIR_FOREGROUND=255
-typeset -g POWERLEVEL9K_DIR_BACKGROUND=024
+typeset -g POWERLEVEL9K_DIR_FOREGROUND=015
+typeset -g POWERLEVEL9K_DIR_BACKGROUND=239
 typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
 typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
 typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=015
@@ -181,8 +182,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time kubecontext vc
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv newline prompt_char)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs custom_kube_ps1 vcs newline)
 
-POWERLEVEL9K_CONTEXT_FOREGROUND='016'
-POWERLEVEL9K_CONTEXT_BACKGROUND='045'
+POWERLEVEL9K_CONTEXT_FOREGROUND='232'
+POWERLEVEL9K_CONTEXT_BACKGROUND='184'
 #POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='236'
 #POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='250'
 #POWERLEVEL9K_DIR_HOME_BACKGROUND='236'
@@ -255,25 +256,11 @@ alias q='qbec'
 alias qs='qbec show'
 alias qa='qbec apply'
 alias qd='qbec diff'
-alias gd='git diff'
 alias gs='git status'
-alias gl='git log --graph --pretty --decorate --all'
-alias t='terraform'
-alias ta='terraform apply'
-alias tp='terraform plan'
-alias linstor='kubectl exec -n linstor linstor-controller-0 -ti -c linstor-controller -- linstor'
-alias oneexec='kubectl exec -ti -n opennebula `k get pod -l role=leader -n opennebula -o name` -c oned -- bash'
-
-if command -V kubectl-use >/dev/null; then
-  source <(kubectl-use -completion)
-fi
-
-# Helm template single file
-ht(){ awk -v f="$1$" '$0~f,/^---/'; }
 
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin
-export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
+export ONE_XMLRPC=https://api.opennebula.wedos.cloud/RPC2
 
 # Kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin
