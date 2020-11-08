@@ -286,9 +286,9 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight +20") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -20") end),
     awful.key({ }, "XF86WLAN", function () awful.util.spawn("if [ $(cat /sys/class/rfkill/rfkill1/soft) -eq 1 ]; then rfkill unblock 1; else rfkill block 1; fi") end), 
-    awful.key({ }, "XF86PowerOff", function () awful.util.spawn("i3lock --24 -t -i /home/kvaps/Pictures/wallpaper.png") end),
-    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("i3lock --24 -t -i /home/kvaps/Pictures/wallpaper.png") end),
-    awful.key({ "Shift" }, "XF86PowerOff", function () awful.util.spawn("sh -c 'i3lock --24 -t -i /home/kvaps/Pictures/wallpaper.png & systemctl suspend'") end),
+    awful.key({ }, "XF86PowerOff", function () awful.util.spawn("i3lock --24 -t -i /home/kvaps/Pictures/lockscreen.png") end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("i3lock --24 -t -i /home/kvaps/Pictures/lockscreen.png") end),
+    awful.key({ "Shift" }, "XF86PowerOff", function () awful.util.spawn("sh -c 'i3lock --24 -t -i /home/kvaps/Pictures/lockscreen.png & systemctl suspend'") end),
 
     -- Translate
     awful.key({ modkey,           }, "`",  function () awful.util.spawn("sh -c 'notify-send -u low \"$(xsel -o | trans -b :ru)\" '") end),
