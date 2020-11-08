@@ -83,7 +83,6 @@ plugins=(
   helm
   ansible
   docker
-  ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
