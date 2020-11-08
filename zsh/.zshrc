@@ -258,6 +258,11 @@ alias qa='qbec apply'
 alias qd='qbec diff'
 alias gs='git status'
 
+
+alias oneexec='kubectl exec -n opennebula -ti `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- bash'
+alias linstor='kubectl exec -n linstor pod/linstor-controller-0 -ti -- linstor'
+alias neat='kubectl neat'
+alias krew='kubectl krew'
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin
 export ONE_XMLRPC=https://api.opennebula.wedos.cloud/RPC2
