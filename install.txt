@@ -164,7 +164,7 @@ cp dotfiles/X11/xorg.conf.g/* /etc/X11/xorg.conf.d/
 echo 'HandlePowerKey=ignore' | sudo tee -a /etc/systemd/logind.conf
 
 # install window manager and useful tools/widgets
-pacman -S awesome arandr autorandr volumeicon cbatticon kmix solid t5ct faenza-icon-theme translate-shell
+pacman -S awesome arandr autorandr volumeicon cbatticon kmix solid qt5ct lxappearance-gtk3 faenza-icon-theme translate-shell
 
 # Install i3lock
 yay -S i3lock-cac03-git
