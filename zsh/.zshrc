@@ -264,7 +264,7 @@ alias neat='kubectl neat'
 alias krew='kubectl krew'
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin
-export ONE_XMLRPC=https://api.opennebula.wedos.cloud/RPC2
+export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
 
 # Kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin

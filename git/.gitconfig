@@ -9,6 +9,8 @@
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [credential]
 	helper = cache --timeout=3600
+#[url "git@gist.github.com:kvaps"]
+#	insteadOf = https://gist.github.com/kvaps
 [url "git@github.com:kvaps"]
 	insteadOf = https://github.com/kvaps
 [url "git@github.com:wedos"]
