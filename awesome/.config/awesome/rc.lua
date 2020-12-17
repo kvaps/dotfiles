@@ -475,6 +475,7 @@ awful.rules.rules = {
           "copyq",  -- Includes session name in class.
         },
         class = {
+          "kmix",
           "Arandr",
           "Gpick",
           "Kruler",
@@ -603,13 +604,13 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 do
   local cmds =
   {
-    "nm-applet",
+    "sh -c 'GTK_THEME=Adwaita:dark exec nm-applet'",
     "killall cbatticon",
     "cbatticon",
-    "kmix",
+    "kmix --keepvisibility",
     "killall gatotray",
     "gatotray",
-    "blueman-applet",
+    "sh -c 'GTK_THEME=Adwaita:dark exec blueman-applet'",
     "keepassxc",
     "dropbox"
   }
