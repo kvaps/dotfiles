@@ -235,7 +235,7 @@ kubectl krew install kvaps/node-shell
 kubectl krew install kvaps/use
 
 # install graphic packets
-pacman -S eog gimp darktable imagemagick
+pacman -S eog gimp darktable imagemagick kdenlive audacity
 
 # install video packets
 pacman -S mpv vlc
