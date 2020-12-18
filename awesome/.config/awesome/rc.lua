@@ -606,7 +606,7 @@ do
   {
     "sh -c 'GTK_THEME=Adwaita:dark exec nm-applet'",
     "killall cbatticon",
-    "cbatticon",
+    "cbatticon -i symbolic",
     "sh -c 'QT_QPA_PLATFORMTHEME=qt5ct exec kmix --keepvisibility'",
     "killall gatotray",
     "gatotray",
