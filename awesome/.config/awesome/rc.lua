@@ -612,7 +612,7 @@ do
     "gatotray",
     "sh -c 'GTK_THEME=Adwaita:dark exec blueman-applet'",
     "keepassxc",
-    "dolphin --daemon",
+    "while dolphin --daemon; do :; done",
     "dropbox"
   }
 
