@@ -166,8 +166,8 @@ echo 'HandlePowerKey=ignore' | sudo tee -a /etc/systemd/logind.conf
 # install window manager and useful tools/widgets
 pacman -S awesome arandr autorandr volumeicon cbatticon kmix solid qt5ct qt5-styleplugins lxappearance-gtk3 faenza-icon-theme translate-shell
 
-# Install i3lock
-yay -S i3lock-cac03-git
+# Install i3lock and faience-ng icons theme
+yay -S i3lock-cac03-git faience-ng-icon-theme
 
 # install firefox
 pacman -S firefox

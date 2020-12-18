@@ -605,15 +605,13 @@ do
   local cmds =
   {
     "sh -c 'GTK_THEME=Adwaita:dark exec nm-applet'",
-    "killall cbatticon",
-    "cbatticon -i symbolic",
+    "sh -c 'pgrep cbatticon || exec cbatticon -i symbolic'",
     "sh -c 'QT_QPA_PLATFORMTHEME=qt5ct exec kmix --keepvisibility'",
-    "killall gatotray",
-    "gatotray",
+    "sh -c 'pgrep gatotray || exec gatotray'",
     "sh -c 'GTK_THEME=Adwaita:dark exec blueman-applet'",
-    "keepassxc",
     "sh -c 'while dolphin --daemon; do :; done'",
-    "dropbox"
+    "dropbox",
+    "keepassxc"
   }
 
   for _,i in pairs(cmds) do
