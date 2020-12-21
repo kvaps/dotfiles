@@ -604,11 +604,11 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 do
   local cmds =
   {
-    "sh -c 'GTK_THEME=Adwaita:dark exec nm-applet'",
+    "nm-applet",
     "sh -c 'pgrep cbatticon || exec cbatticon -i symbolic'",
-    "sh -c 'QT_QPA_PLATFORMTHEME=qt5ct exec kmix --keepvisibility'",
+    "kmix --keepvisibility",
     "sh -c 'pgrep gatotray || exec gatotray'",
-    "sh -c 'GTK_THEME=Adwaita:dark exec blueman-applet'",
+    "blueman-applet",
     "sh -c 'while dolphin --daemon; do :; done'",
     "dropbox",
     "keepassxc"

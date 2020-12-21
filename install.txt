@@ -164,13 +164,19 @@ cp dotfiles/X11/xorg.conf.g/* /etc/X11/xorg.conf.d/
 echo 'HandlePowerKey=ignore' | sudo tee -a /etc/systemd/logind.conf
 
 # install window manager and useful tools/widgets
-pacman -S awesome arandr autorandr volumeicon cbatticon kmix solid qt5ct lxappearance-gtk3 faenza-icon-theme translate-shell
+pacman -S awesome arandr autorandr volumeicon cbatticon kmix solid lxappearance-gtk3 faenza-icon-theme translate-shell
+
+# Install themes and icons
+yay -S mojave-gtk-theme kvantum-qt5 tela-icon-theme
 
 # Install i3lock
 yay -S i3lock-cac03-git
 
 # install firefox
 pacman -S firefox
+
+# Firefox theme
+https://addons.mozilla.org/ru/firefox/addon/contrast-gray/
 
 # about:config
 # browser.link.open_newwindow.restriction=0

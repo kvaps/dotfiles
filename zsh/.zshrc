@@ -236,6 +236,7 @@ export PATH=$PATH:${HOME}/.local/bin
 export EDITOR="vim"
 export BROWSER="firefox"
 export QT_QPA_PLATFORMTHEME="gtk3"
+export QT_STYLE_OVERRIDE="kvantum"
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN"
