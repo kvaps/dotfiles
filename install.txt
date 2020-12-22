@@ -182,6 +182,8 @@ pacman -S firefox
 
 # Firefox theme
 https://addons.mozilla.org/ru/firefox/addon/contrast-gray/
+https://addons.mozilla.org/en-US/firefox/addon/gray-theme-for-firefox/
+https://addons.mozilla.org/ru/firefox/addon/google-chrome-dark/
 
 # about:config
 # browser.link.open_newwindow.restriction=0
