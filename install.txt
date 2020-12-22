@@ -30,7 +30,12 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
 # install base packages (npm is needed for coc)
-git sudo gvim zsh npm gopls
+pacman -S git sudo gvim zsh npm gopls
+
+# install zsh plugins
+pacman -S zsh-syntax-highlighting, autosuggestions
+git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh
+git clone https://github.com/romkatv/powerlevel10k/ ~/.oh-my-zsh/themes/powerlevel10k/
 
 # Add user
 useradd -m -G wheel,audio,video,storage,lp,power -s /bin/zsh kvaps
