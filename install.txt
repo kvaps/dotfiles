@@ -98,7 +98,7 @@ grub-install
 grub-install --removable
 vim /etc/default/grub
 #GRUB_TIMEOUT=1
-#GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 pci=noaer rfkill.default_state=1 processor.max_cstate=1"
+#GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 pci=nommconf"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 
