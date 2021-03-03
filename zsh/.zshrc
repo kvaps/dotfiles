@@ -260,15 +260,26 @@ alias gs='git status'
 
 
 alias oneexec='kubectl exec -n opennebula -ti `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- bash'
-alias linstor='kubectl exec -n linstor pod/linstor-controller-0 -ti -- linstor'
+alias onehost='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onehost'
+alias onevm='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onevm'
+alias onezone='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onezone'
+alias oneimage='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- oneimage'
+alias onedatastore='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onedatastore'
+
+alias linstor='kubectl exec -n linstor deploy/linstor-controller -ti -- linstor'
 alias neat='kubectl neat'
 alias krew='kubectl krew'
 # OpenNebula
-export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin
+export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin:${HOME}/.gem/ruby/2.7.0/bin
 export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
 
 # Kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin
+
+# ibus-typing-booster
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
@@ -281,3 +292,6 @@ fi
 if [ "$TERM" = xterm-termite ]; then
   export TERM=xterm-256color
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/tk tk
