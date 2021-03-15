@@ -115,7 +115,7 @@ nmcli d wifi list
 nmcli d wifi connect <WiFiSSID> password <WiFiPassword>
 
 # install xorg
-pacman -S xorg-server xf86-input-synaptics xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot xsel xdotool mesa-demos
+pacman -S xorg-server xf86-input-libinput libinput xterm xorg-xinit xorg-xclipboard xclip xf86-video-amdgpu scrot xsel xdotool mesa-demos
 yay -S xcwd-git
 
 # install lightdm and enable autologin
