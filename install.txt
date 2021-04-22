@@ -279,4 +279,4 @@ systemctl enable org.cups.cupsd.service
 
 echo a4 > /etc/papersize
 
-yay -S cndrvcups-lb-bin
+yay -S cnrdrvcups-lb-bin
