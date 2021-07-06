@@ -102,6 +102,8 @@ vim /etc/default/grub
 #GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 pci=nommconf idle=nomwait rfkill.default_state=1 processor.max_cstate=1"
 grub-mkconfig -o /boot/grub/grub.cfg
 
+# Fix touchpad (https://github.com/Syniurge/i2c-amd-mp2/issues/3)
+echo "softdep i2c_hid pre: pinctrl_amd" > /etc/modprobe.d/i2c-touchpad.conf
 
 # umount and reboot
 umount -R /mnt
