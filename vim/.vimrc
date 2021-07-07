@@ -24,6 +24,11 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 "Plug 'dense-analysis/ale'
 
+"Plug 'kana/vim-textobj-indent'
+"Plug 'kana/vim-textobj-user'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'wakatime/vim-wakatime'
+
 Plug 'neoclide/coc.nvim'
 " CocInstall coc-go coc-vimlsp coc-python coc-sh coc-yaml coc-json coc-markdownlint
 " yay -S terraform-lsp-bin
@@ -41,11 +46,11 @@ Plug 'sbdchd/neoformat'
 call plug#end()
 
 " Format shell on save
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
-let g:shfmt_opt="-i 2"
+"augroup fmt
+"  autocmd!
+"  autocmd BufWritePre * undojoin | Neoformat
+"augroup END
+"let g:shfmt_opt="-i 2"
 
 if ! empty(glob('~/.vim/plugged/molokai/colors/molokai.vim'))
   colorscheme molokai
@@ -137,6 +142,7 @@ let &t_EI = "\<Esc>[2 q"
 
 " Show type in statusline
 let g:go_auto_type_info = 1
+let g:go_fmt_command = "goimports"
 
 " =========== vim-coc settings =============
 
