@@ -14,6 +14,12 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
+" fix swap files
+if empty(glob('~/.vim/tmp'))
+    silent !mkdir -p ~/.vim/tmp
+endif
+set directory=$HOME/.vim/tmp
+
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
