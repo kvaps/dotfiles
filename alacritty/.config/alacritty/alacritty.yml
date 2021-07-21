@@ -1,3 +1,6 @@
+env:
+  TERM: xterm-256color
+
 # Font configuration
 font:
   # Point size
@@ -48,3 +51,27 @@ colors:
     magenta: '#764159'
     cyan:    '#5f8053'
     white:   '#7e7462'
+
+  cursor:
+    text: '#000000'
+    cursor: '#ebdbb2'
+
+  # Vi mode cursor colors
+  #
+  # Colors for the cursor when the vi mode is active.
+  #
+  # Allowed values are CellForeground and CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
+  vi_mode_cursor:
+    text: '#000000'
+    cursor: '#ebdbb2'
+
+  # Selection colors
+  #
+  # Colors which should be used to draw the selection area.
+  #
+  # Allowed values are CellForeground and CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
+  selection:
+    text: '#000000'
+    cursor: '#ebdbb2'
