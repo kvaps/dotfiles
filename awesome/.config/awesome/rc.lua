@@ -43,7 +43,7 @@ end
 beautiful.init("~/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "termite"
+terminal = "alacritty"
 browser = "firefox"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
@@ -307,7 +307,7 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, "Control" }, "Return", function () awful.util.spawn("sh -c 'termite -d \"$(xcwd)\"'") end,
+    awful.key({ modkey, "Control" }, "Return", function () awful.util.spawn("sh -c 'alacritty -d \"$(xcwd)\"'") end,
               {description = "open a terminal on current path", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),

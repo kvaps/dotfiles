@@ -132,8 +132,8 @@ vim /etc/lightdm/lightdm.conf
 #pam-service=lightdm-autologin
 #user-session=awesome
 
-# install termite
-termite 
+# install alacritty
+pacman -S alacritty
 
 # install backlight
 pacman -S acpilight

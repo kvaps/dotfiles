@@ -1,0 +1,50 @@
+# Font configuration
+font:
+  # Point size
+  size: 6.3
+
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
+
+# Colors (Tomorrow Night)
+colors:
+  # Default colors
+  primary:
+    background: '#171717'
+    foreground: '#ebdbb2'
+
+  # Normal colors
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#bdae93'
+
+  # Bright colors
+  bright:
+    black:   '#7c6f64'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
+
+  # Dim colors
+  #
+  # If the dim colors are not set, they will be calculated automatically based
+  # on the `normal` colors.
+  dim:
+    black:   '#1b1b1b'
+    red:     '#881813'
+    green:   '#656511'
+    yellow:  '#8f6616'
+    blue:    '#2e595b'
+    magenta: '#764159'
+    cyan:    '#5f8053'
+    white:   '#7e7462'
