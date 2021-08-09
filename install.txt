@@ -153,7 +153,6 @@ yay -S nerd-fonts-dejavu-complete
 vim /etc/pacman.conf # uncoment multilib
 git clone https://aur.archlinux.org/amdgpu-pro-installer.git
 cd amdgpu-pro-installer
-git checkout 370d39c6 # 19.30_934563-1
 makepkg -si
 
 # install earlyoom
@@ -161,7 +160,8 @@ pacman -Sy earlyoom
 systemctl enable --now earlyoom
 
 # install displaylink driver
-yay -S displaylink evdi-git
+yay -S displaylink evdi-amd-vmap-texture
+echo "options evdi vmap_texture=1" | sudo tee /etc/modprobe.d/evdi.conf
 dkms status
 systemctl enable displaylink
 systemctl start displaylink
