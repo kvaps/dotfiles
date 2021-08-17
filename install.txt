@@ -85,10 +85,6 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-# install wifi-drivers
-rtl8821ce-dkms-git
-dkms status # should be installed
-
 # create initcpio image
 pacman -S btrfs-progs
 mkinitcpio -p linux
@@ -99,7 +95,7 @@ grub-install
 grub-install --removable
 vim /etc/default/grub
 #GRUB_TIMEOUT=1
-#GRUB_CMDLINE_LINUX_DEFAULT="processor.max_cstate=1 amdgpu.noretry=0"
+#GRUB_CMDLINE_LINUX_DEFAULT="amdgpu.noretry=0"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Fix touchpad (https://github.com/Syniurge/i2c-amd-mp2/issues/3)
@@ -180,6 +176,7 @@ echo 'HandlePowerKey=ignore' | sudo tee -a /etc/systemd/logind.conf
 
 # install window manager and useful tools/widgets
 pacman -S awesome arandr autorandr volumeicon cbatticon kmix solid lxappearance-gtk3 faenza-icon-theme translate-shell sysstat ntfs-3g
+#pacman -S sway wdisplays
 
 # Install themes and icons
 yay -S mojave-gtk-theme kvantum-qt5 tela-icon-theme
