@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/kvaps/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -83,6 +83,8 @@ plugins=(
   helm
   ansible
   docker
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -92,8 +94,8 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'.
 # fish like completion
 ZSH_AUTOSUGGEST_STRATEGY=(completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=1
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # list colors:
 # for code ({000..255}) print -P -- "%F{$code}Foreground%f $code %K{$code}%F{255}Back%f%F{232}ground%f%k"
@@ -246,7 +248,7 @@ export LESS="-F -X $LESS"
 export PATH="$PATH:${HOME}/.krew/bin"
 
 # Colorize output
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
@@ -271,6 +273,7 @@ alias neat='kubectl neat'
 alias krew='kubectl krew'
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin:${HOME}/.gem/ruby/2.7.0/bin
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
 
 # Kubebuilder

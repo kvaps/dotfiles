@@ -1,2 +1,2 @@
-:root { --tab-height: 28px !important; }  
+:root { --tab-height: 22pt !important; }
 .tab:not(.pinned) { height: var(--tab-height) !important; }

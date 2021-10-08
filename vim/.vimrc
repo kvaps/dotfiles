@@ -120,7 +120,11 @@ noremap <Leader>s :update<CR>
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Включаем поддержку системного буфера
-set clipboard=unnamedplus
+if system('uname -s') == "Darwin\n"
+  set clipboard=unnamed "OSX
+else
+  set clipboard=unnamedplus "Linux
+endif
 
 " Запоминать расположение курсора
 if has("autocmd")
