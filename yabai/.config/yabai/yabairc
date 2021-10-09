@@ -16,7 +16,7 @@
 
 # global settings
 SPACEBAR_HEIGHT=$(spacebar -m config height)
-yabai -m config external_bar all:0:$SPACEBAR_HEIGHT
+yabai -m config external_bar all:0:${SPACEBAR_HEIGHT:-26}
 
 yabai -m config mouse_follows_focus          off
 yabai -m config focus_follows_mouse          autofocus

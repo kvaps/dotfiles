@@ -11,6 +11,8 @@ cmd - return : open -n -a "/Applications/Alacritty.app"
 
 # fast focus desktop
 # cmd + alt - x : yabai -m space --focus recent
+lctrl - left  : yabai -m space --focus prev
+lctrl - right : yabai -m space --focus next
 cmd - 1 : yabai -m space --focus 1
 cmd - 2 : yabai -m space --focus 2
 cmd - 3 : yabai -m space --focus 3
@@ -78,12 +80,12 @@ shift + cmd + lctrl - up    : yabai -m window --insert north
 shift + cmd + lctrl - right : yabai -m window --insert east
 
 # Float / Unfloat window
-shift + cmd - f : \
+cmd + lctrl - f : \
     yabai -m window --toggle float; \
     yabai -m window --toggle border
 
 # Restart Yabai
-cmd + shift - r : \
+cmd + lctrl - r : \
     /usr/bin/env osascript <<< \
         "display notification \"Restarting Yabai\" with title \"Yabai\""; \
     launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
