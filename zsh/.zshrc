@@ -276,8 +276,12 @@ alias neat='kubectl neat'
 alias krew='kubectl krew'
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin:${HOME}/.gem/ruby/2.7.0/bin
-export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
+
+# Homebrew binaries
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/Cellar/grep/3.7/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 
 # Kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin
@@ -301,3 +305,6 @@ fi
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/tk tk
+
+# Disable dock icon bouncing
+printf "\e[?1042l"
