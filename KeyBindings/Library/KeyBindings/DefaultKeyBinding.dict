@@ -7,4 +7,8 @@
   "^\UF72B" = moveToEndOfDocument:; // ctrl-end
   "^$\UF729" = moveToBeginningOfDocumentAndModifySelection:; // ctrl-shift-home
   "^$\UF72B" = moveToEndOfDocumentAndModifySelection:; // ctrl-shift-end
+  "^\UF702" = moveWordLeft:;
+  "^\UF703" = moveWordRight:;
+  "^$\UF702" = moveWordLeftAndModifySelection:;
+  "^$\UF703" = moveWordRightAndModifySelection:;
 }

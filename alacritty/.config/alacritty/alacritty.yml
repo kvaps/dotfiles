@@ -13,7 +13,7 @@ window:
 # Font configuration
 font:
   # Point size
-  size: 14
+  size: 13
   normal:
     family: DejaVuSansMono Nerd Font Mono
     style: Book
@@ -97,3 +97,10 @@ colors:
   selection:
     text: '#000000'
     cursor: '#ebdbb2'
+
+key_bindings:
+  - { key: Up,       mods: Alt,     chars: "\x1b[1;5A"                   }
+  - { key: Down,     mods: Alt,     chars: "\x1b[1;5B"                   }
+  - { key: Left,     mods: Alt,     chars: "\x1bb"                       }
+  - { key: Right,    mods: Alt,     chars: "\x1bf"                       }
+  - { key: D,        mods: Alt,     chars: "\x1bd"                       }

@@ -18,7 +18,7 @@
 SPACEBAR_HEIGHT=$(spacebar -m config height)
 yabai -m config external_bar all:0:${SPACEBAR_HEIGHT:-26}
 
-yabai -m config mouse_follows_focus          off
+yabai -m config mouse_follows_focus          autofocus
 yabai -m config focus_follows_mouse          autofocus
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               off
@@ -48,3 +48,8 @@ yabai -m config right_padding                12
 yabai -m config window_gap                   06
 
 echo "yabai configuration loaded.."
+
+
+#echo "ALL ALL = (ALL) NOPASSWD: $(which yabai) --load-sa" | sudo tee /etc/sudoers.d/yabai
+sudo yabai --load-sa
+echo "yabai scripting addon loaded.."

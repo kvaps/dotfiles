@@ -28,7 +28,7 @@ spacebar -m config space_icon_strip            1 2 3 4 5 6 7 8 9 10
 spacebar -m config spaces_for_all_displays     off
 spacebar -m config clock_icon                  
 spacebar -m config dnd_icon                    
-spacebar -m config clock_format                "%d/%m/%y %R"
+spacebar -m config clock_format                "%a %e %h %Y %R"
 spacebar -m config right_shell                 on
 spacebar -m config right_shell_icon            
 spacebar -m config right_shell_command         "whoami"
