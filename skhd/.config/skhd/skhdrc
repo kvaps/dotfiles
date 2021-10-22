@@ -11,8 +11,10 @@ alt - return : open -n -a "/Applications/Alacritty.app"
 #cmd - 9: open -a Music
 
 # fast focus desktop
-cmd - left  : yabai -m space --focus prev
-cmd - right : yabai -m space --focus next
+cmd - left  : yabai -m space --focus prev   || yabai -m space --focus last
+cmd - right : yabai -m space --focus next   || yabai -m space --focus first
+cmd - down  : yabai -m display --focus prev || yabai -m display --focus last
+cmd - up    : yabai -m display --focus next || yabai -m display --focus first
 cmd - 1 : yabai -m space --focus 1
 cmd - 2 : yabai -m space --focus 2
 cmd - 3 : yabai -m space --focus 3
@@ -30,25 +32,30 @@ alt - down  : yabai -m window --focus south
 alt - up    : yabai -m window --focus north
 alt - right : yabai -m window --focus east
 
-# Moving windows
+# Align windows
 lctrl + alt - left  : yabai -m window --warp west
 lctrl + alt - down  : yabai -m window --warp south
 lctrl + alt - up    : yabai -m window --warp north
 lctrl + alt - right : yabai -m window --warp east
 
+# (last two actions used as workaround to refresh bar)
+#lctrl + shift - left  : yabai -m space --swap prev; yabai -m space --focus prev; yabai -m space --focus next
+#lctrl + shift - right : yabai -m space --swap next; yabai -m space --focus next; yabai -m space --focus prev
+cmd + lctrl - left  : yabai -m window --space prev   || yabai -m window --space last    ; yabai -m space --focus prev   || yabai -m space --focus last
+cmd + lctrl - right : yabai -m window --space next   || yabai -m window --space first   ; yabai -m space --focus next   || yabai -m space --focus first
+cmd + lctrl - down  : yabai -m window --display prev || yabai -m window --display last  ; yabai -m display --focus prev || yabai -m display --focus last
+cmd + lctrl - up    : yabai -m window --display next || yabai -m window --display first ; yabai -m display --focus next || yabai -m display --focus first
+
 # Move focus container to workspace
-#shift + alt - m : yabai -m window --space last; yabai -m space --focus last
-lctrl + cmd - left : yabai -m window --space prev; yabai -m space --focus prev
-lctrl + cmd - right : yabai -m window --space next; yabai -m space --focus next
-lctrl + cmd - 1 : yabai -m window --space 1; yabai -m space --focus 1
-lctrl + cmd - 2 : yabai -m window --space 2; yabai -m space --focus 2
-lctrl + cmd - 3 : yabai -m window --space 3; yabai -m space --focus 3
-lctrl + cmd - 4 : yabai -m window --space 4; yabai -m space --focus 4
-lctrl + cmd - 5 : yabai -m window --space 5; yabai -m space --focus 5
-lctrl + cmd - 6 : yabai -m window --space 6; yabai -m space --focus 6
-lctrl + cmd - 7 : yabai -m window --space 7; yabai -m space --focus 7
-lctrl + cmd - 8 : yabai -m window --space 8; yabai -m space --focus 8
-lctrl + cmd - 9 : yabai -m window --space 9; yabai -m space --focus 9
+cmd + lctrl - 1 : yabai -m window --space 1
+cmd + lctrl - 2 : yabai -m window --space 2
+cmd + lctrl - 3 : yabai -m window --space 3
+cmd + lctrl - 4 : yabai -m window --space 4
+cmd + lctrl - 5 : yabai -m window --space 5
+cmd + lctrl - 6 : yabai -m window --space 6
+cmd + lctrl - 7 : yabai -m window --space 7
+cmd + lctrl - 8 : yabai -m window --space 8
+cmd + lctrl - 9 : yabai -m window --space 9
 
 # Resize windows
 shift + alt - left  : yabai -m window --resize left:-50:0; \
@@ -96,4 +103,3 @@ alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 cmd - m         : yabai -m window --toggle zoom-fullscreen
 shift + cmd - m : yabai -m window --toggle native-fullscreen
-

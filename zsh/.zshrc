@@ -247,6 +247,9 @@ export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN"
 export LESS="-F -X $LESS"
 
+# docker platform
+export DOCKER_DEFAULT_PLATFORM=linux/x86_64
+
 # kubectl-krew
 export PATH="$PATH:${HOME}/.krew/bin"
 
@@ -282,6 +285,7 @@ export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/Cellar/grep/3.7/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # Kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin
