@@ -1,0 +1,8 @@
+[submodule "ubersicht/Library/Application Support/Übersicht/widgets/simple-bar"]
+	path = ubersicht/Library/Application Support/Übersicht/widgets/simple-bar
+	url = https://github.com/kvaps/simple-bar
+  branch = kvaps
+[submodule "ubersicht/Library/Application Support/Übersicht/widgets/pretty-weather.widget"]
+	path = ubersicht/Library/Application Support/Übersicht/widgets/pretty-weather.widget
+	url = https://github.com/kvaps/pretty-weather
+  branch = kvaps
