@@ -26,7 +26,8 @@ cmd - 8 : yabai -m space --focus $(yabai -m query --displays --display | jq '.sp
 cmd - 9 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[8]')
 
 # Navigation
-alt - tab   : yabai -m window --focus recent
+cmd - tab         : yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id')
+cmd + shift - tab : yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur-1)), last ] | first.value.id')
 alt - left  : yabai -m window --focus west
 alt - down  : yabai -m window --focus south
 alt - up    : yabai -m window --focus north
@@ -38,15 +39,13 @@ lctrl + alt - down  : yabai -m window --warp south
 lctrl + alt - up    : yabai -m window --warp north
 lctrl + alt - right : yabai -m window --warp east
 
-# (last two actions used as workaround to refresh bar)
-#lctrl + shift - left  : yabai -m space --swap prev; yabai -m space --focus prev; yabai -m space --focus next
-#lctrl + shift - right : yabai -m space --swap next; yabai -m space --focus next; yabai -m space --focus prev
+# Move window to workspace or display
 cmd + lctrl - left  : yabai -m window --space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur-1)), last] | first.index')
 cmd + lctrl - right : yabai -m window --space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur+1)), first] | first.index')
 cmd + lctrl - down  : yabai -m window --display prev || yabai -m window --display last  ; yabai -m display --focus prev || yabai -m display --focus last
 cmd + lctrl - up    : yabai -m window --display next || yabai -m window --display first ; yabai -m display --focus next || yabai -m display --focus first
 
-# Move focus container to workspace
+# Move window to workspace
 cmd + lctrl - 1 : yabai -m window --space $(yabai -m query --displays --display | jq '.spaces[0]')
 cmd + lctrl - 2 : yabai -m window --space $(yabai -m query --displays --display | jq '.spaces[1]')
 cmd + lctrl - 3 : yabai -m window --space $(yabai -m query --displays --display | jq '.spaces[2]')
