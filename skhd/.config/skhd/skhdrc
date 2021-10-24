@@ -88,7 +88,8 @@ shift + lctrl + alt - right : yabai -m window --insert east
 
 # Create / Destroy space
 cmd + lctrl - return : yabai -m space --create; yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | last.index')
-cmd + lctrl - w      : yabai -m space --destroy; yabai -m space --focus recent
+cmd + lctrl - w      : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | .[]|select(.index == $cur-1).index'); \
+                       yabai -m space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | .[]|select(.index == $cur+1).index') --destroy
 
 # Float / Unfloat window
 cmd + lctrl - f : \
