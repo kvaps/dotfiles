@@ -87,9 +87,19 @@ shift + lctrl + alt - up    : yabai -m window --insert north
 shift + lctrl + alt - right : yabai -m window --insert east
 
 # Create / Destroy space
-cmd + lctrl - return : yabai -m space --create; yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | last.index')
+# TODO: remove this ugly workaround
+cmd + lctrl - return : yabai -m space --create; yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | last.index'); \
+                       yabai -m query --spaces | jq -e '([.[].display]|sort|last) as $lastmon | .[]| select(.focused==1).display != $lastmon' || exit 0; \
+                       osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to true'; \
+                       sleep 0.1; \
+                       osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to false'
+
 cmd + lctrl - w      : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | .[]|select(.index == $cur-1).index'); \
-                       yabai -m space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | .[]|select(.index == $cur+1).index') --destroy
+                       yabai -m space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | .[]|select(.index == $cur+1).index') --destroy; \
+                       yabai -m query --spaces | jq -e '([.[].display]|sort|last) as $lastmon | .[]| select(.focused==1).display != $lastmon' || exit 0; \
+                       osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to true'; \
+                       sleep 0.1; \
+                       osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to false'
 
 # Float / Unfloat window
 cmd + lctrl - f : \
