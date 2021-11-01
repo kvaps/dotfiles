@@ -1,0 +1,32 @@
+{
+  "title": "Change caps_lock to F19 and right_option",
+  "rules": [
+	{
+	  "description": "Post F19 if Caps is tapped, right_option if held.",
+	  "manipulators": [
+        {
+    "type": "basic",
+    "from": {
+        "key_code": "caps_lock",
+        "modifiers": {
+            "optional": [
+                "any"
+            ]
+        }
+    },
+    "to": [
+        {
+            "key_code": "right_option",
+            "lazy": true
+        }
+    ],
+    "to_if_alone": [
+        {
+            "key_code": "f19"
+        }
+    ]
+}
+	  ]
+	}
+  ]
+}
