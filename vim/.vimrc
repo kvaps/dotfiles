@@ -35,8 +35,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wakatime/vim-wakatime'
 
-Plug 'neoclide/coc.nvim'
-" CocInstall coc-go coc-vimlsp coc-python coc-sh coc-yaml coc-json coc-markdownlint
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" CocInstall coc-go coc-vimlsp coc-python coc-sh coc-yaml coc-json coc-markdownlint coc-docker
 " yay -S terraform-lsp-bin
 
 Plug 'google/vim-jsonnet'
@@ -44,7 +44,6 @@ Plug '907th/vim-auto-save'
 Plug 'kamykn/spelunker.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-commentary'
