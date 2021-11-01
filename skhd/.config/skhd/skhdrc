@@ -4,11 +4,39 @@ f12: skhd -k '0x75'
 cmd - return : open -n -a "/Applications/Alacritty.app"
 alt - return : open -n -a "/Applications/Alacritty.app"
 
-#cmd - 1: open -a Firefox
-#cmd - 2: open -a iTerm
-#cmd - 3: open -a Finder
-#cmd - 4: open -a KeepassXC
-#cmd - 9: open -a Music
+
+# Map Czech symbols (ralt is mapped to caps_lock)
+ralt         - a : skhd -t 'á'
+ralt + shift - a : skhd -t 'Á'
+ralt         - c : skhd -t 'č'
+ralt + shift - c : skhd -t 'Č'
+ralt         - d : skhd -t 'ď'
+ralt + shift - d : skhd -t 'Ď'
+ralt         - e : skhd -t 'é'
+ralt + shift - e : skhd -t 'É'
+ralt         - w : skhd -t 'ě'
+ralt + shift - w : skhd -t 'Ě'
+ralt         - i : skhd -t 'í'
+ralt + shift - i : skhd -t 'Í'
+ralt         - n : skhd -t 'ň'
+ralt + shift - n : skhd -t 'Ň'
+ralt         - o : skhd -t 'ó'
+ralt + shift - o : skhd -t 'Ó'
+ralt         - r : skhd -t 'ř'
+ralt + shift - r : skhd -t 'Ř'
+ralt         - s : skhd -t 'š'
+ralt + shift - s : skhd -t 'Š'
+ralt         - t : skhd -t 'ť'
+ralt + shift - t : skhd -t 'Ť'
+ralt         - u : skhd -t 'ú'
+ralt + shift - u : skhd -t 'Ú'
+ralt         - j : skhd -t 'ů'
+ralt + shift - j : skhd -t 'Ů'
+ralt         - y : skhd -t 'ý'
+ralt + shift - y : skhd -t 'Ý'
+ralt         - z : skhd -t 'ž'
+ralt + shift - z : skhd -t 'Ž'
+
 
 # fast focus desktop
 cmd - left  : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur-1)), last] | first.index')
