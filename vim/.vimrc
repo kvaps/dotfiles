@@ -63,6 +63,8 @@ if ! empty(glob('~/.vim/plugged/molokai/colors/molokai.vim'))
   let g:rehash256 = 1
 endif
 
+set cursorcolumn
+set cursorline
 set background=dark
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set go=c
