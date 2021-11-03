@@ -9,5 +9,6 @@
       "initializationOptions": {}
     }
   },
+  "coc.source.file.triggerCharacters": [ "/" ],
   "python.jediEnabled": false
 }
