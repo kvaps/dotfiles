@@ -1,5 +1,5 @@
 # delete key
-f12: skhd -k '0x75'
+f12: skhd -k 'delete'
 
 cmd - return : open -n -a "/Applications/Alacritty.app"
 alt - return : open -n -a "/Applications/Alacritty.app"
@@ -54,8 +54,9 @@ cmd - 8 : yabai -m space --focus $(yabai -m query --displays --display | jq '.sp
 cmd - 9 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[8]')
 
 # Navigation
-cmd - tab         : yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id')
-cmd + shift - tab : yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur-1)), last ] | first.value.id')
+cmd - tab   : yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id')
+cmd - f19   : yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur-1)), last ] | first.value.id')
+lctrl - f19 : skhd -k "lctrl - tab"
 alt - left  : yabai -m window --focus west
 alt - down  : yabai -m window --focus south
 alt - up    : yabai -m window --focus north
