@@ -131,9 +131,14 @@ cmd + lctrl - w      : yabai -m space --focus $(yabai -m query --spaces --displa
                        osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to false'
 
 # Float / Unfloat window
-cmd + lctrl - f : \
-    yabai -m window --toggle float; \
-    yabai -m window --toggle border
+cmd + lctrl - f :
+  file="$HOME/.config/yabai/floating_windows"; \
+  app=$(yabai -m query --windows --window | jq '"^\(.app)$"'); \
+  title=$(yabai -m query --windows --window | jq '"^\(.title)$"'); \
+  rule="yabai -m rule --add app=$app title=$title"; \
+  test $(yabai -m query --windows --window | jq -r .floating) -eq 0 && \
+  (echo "$rule manage=off" | tee "$file.tmp" | sh -x && cat "$file" >> "$file.tmp" 2>/dev/null; sort -u "$file.tmp" > "$file"; rm -f "$file.tmp") || \
+  (echo "$rule manage=on" | sh -sx; sed -i "/$rule manage=off/d" "$file")
 
 # Restart Yabai
 cmd + lctrl - r : \

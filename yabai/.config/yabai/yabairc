@@ -54,6 +54,12 @@ yabai -m signal --add event=space_changed \
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 
+# Load floating_windows configuration
+floating_windows_config="$HOME/.config/yabai/floating_windows"
+if [ -f "$floating_windows_config" ]; then
+  . "$floating_windows_config"
+fi
+
 echo "yabai configuration loaded.."
 
 
