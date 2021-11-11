@@ -1,1 +1,0 @@
-yabai -m rule --add app="^GIMP-2.10$" title="^Create a New Image$" manage=off
