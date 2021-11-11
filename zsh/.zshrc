@@ -312,5 +312,3 @@ complete -o nospace -C /usr/local/bin/tk tk
 
 # Disable dock icon bouncing
 printf "\e[?1042l"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
