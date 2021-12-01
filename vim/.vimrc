@@ -70,6 +70,8 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set go=c
 let g:airline_powerline_fonts = 1
 
+set mmp=5000
+
 set number
 syntax on
 set laststatus=2
