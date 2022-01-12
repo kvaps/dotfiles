@@ -1,0 +1,2 @@
+yabai -m rule --add app="^QuickTime Player$" title="^output.mp4$" manage=off
+yabai -m rule --add app="^VLC$" title="^Ruxpin - Marglyttan$" manage=off

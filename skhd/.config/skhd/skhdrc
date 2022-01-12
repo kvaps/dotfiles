@@ -5,6 +5,17 @@ cmd - return : open -n -a "/Applications/Alacritty.app"
 alt - return : open -n -a "/Applications/Alacritty.app"
 
 
+# Switch sticky windows
+# 0x32: ` (tilde)
+#alt - 0x32: yabai -m window --focus "$(yabai -m query --windows | jq -re "[sort_by(.id) | .[] | select(.app == (\"Firefox\", \"Telegram\")) | .id] | nth(1 + index($(yabai -m query --windows --window | jq '.id'))) // first")"
+cmd - 0x32: yabai -m window --focus "$(yabai -m query --windows | jq -re "[ [.[] | select(.sticky==1)] | unique_by(.id) | sort_by(.id)[] | .id ] | nth(1 + index($(yabai -m query --windows --window | jq '.id'))) // first")"
+
+
+
+alt - m : yabai -m window --toggle zoom-fullscreen; yabai -m window --focus "$(yabai -m query --windows --window | jq -er .id)"
+
+
+
 # Map Czech symbols (ralt is mapped to caps_lock)
 ralt         - a : skhd -t 'á'
 ralt + shift - a : skhd -t 'Á'
@@ -12,10 +23,10 @@ ralt         - c : skhd -t 'č'
 ralt + shift - c : skhd -t 'Č'
 ralt         - d : skhd -t 'ď'
 ralt + shift - d : skhd -t 'Ď'
-ralt         - e : skhd -t 'é'
-ralt + shift - e : skhd -t 'É'
-ralt         - w : skhd -t 'ě'
-ralt + shift - w : skhd -t 'Ě'
+ralt         - e : skhd -t 'ě'
+ralt + shift - e : skhd -t 'Ě'
+ralt         - w : skhd -t 'é'
+ralt + shift - w : skhd -t 'É'
 ralt         - i : skhd -t 'í'
 ralt + shift - i : skhd -t 'Í'
 ralt         - n : skhd -t 'ň'
@@ -28,10 +39,10 @@ ralt         - s : skhd -t 'š'
 ralt + shift - s : skhd -t 'Š'
 ralt         - t : skhd -t 'ť'
 ralt + shift - t : skhd -t 'Ť'
-ralt         - u : skhd -t 'ú'
-ralt + shift - u : skhd -t 'Ú'
-ralt         - j : skhd -t 'ů'
-ralt + shift - j : skhd -t 'Ů'
+ralt         - u : skhd -t 'ů'
+ralt + shift - u : skhd -t 'Ů'
+ralt         - j : skhd -t 'ú'
+ralt + shift - j : skhd -t 'Ú'
 ralt         - y : skhd -t 'ý'
 ralt + shift - y : skhd -t 'Ý'
 ralt         - z : skhd -t 'ž'
@@ -39,23 +50,35 @@ ralt + shift - z : skhd -t 'Ž'
 
 
 # fast focus desktop
-cmd - left  : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur-1)), last] | first.index')
-cmd - right : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur+1)), first] | first.index')
-cmd - down  : yabai -m display --focus prev || yabai -m display --focus last
-cmd - up    : yabai -m display --focus next || yabai -m display --focus first
-cmd - 1 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[0]')
-cmd - 2 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[1]')
-cmd - 3 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[2]')
-cmd - 4 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[3]')
-cmd - 5 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[4]')
-cmd - 6 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[5]')
-cmd - 7 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[6]')
-cmd - 8 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[7]')
-cmd - 9 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[8]')
+#cmd - left  : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur-1)), last] | first.index')
+#cmd - right : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur+1)), first] | first.index')
+#cmd - down  : yabai -m display --focus prev || yabai -m display --focus last
+#cmd - up    : yabai -m display --focus next || yabai -m display --focus first
+cmd - escape  : yabai -m display --focus next || yabai -m display --focus first
+
+# Move focus between unsticky windows
+# TODO: switch focus from sticky windows does not work
+cmd - 1 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[0]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 2 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[1]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+
+cmd - 3 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[2]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+
+cmd - 4 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[3]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+
+cmd - 5 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[4]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+
+cmd - 6 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[5]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+
+cmd - 7 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[6]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+
+cmd - 8 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[7]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+
+cmd - 9 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[8]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+
 
 # Navigation
-cmd - tab   : yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id')
-cmd - f19   : yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur-1)), last ] | first.value.id')
+cmd - tab   : yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id')
+cmd - f19   : yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur-1)), last] | first.value.id')
 lctrl - f19 : skhd -k "lctrl - tab"
 alt - left  : yabai -m window --focus west
 alt - down  : yabai -m window --focus south
@@ -131,7 +154,7 @@ cmd + lctrl - w      : yabai -m space --focus $(yabai -m query --spaces --displa
                        osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to false'
 
 # Float / Unfloat window
-cmd + lctrl - f :
+cmd + lctrl - f : \
   file="$HOME/.config/yabai/floating_windows"; \
   app=$(yabai -m query --windows --window | jq '"^\(.app)$"'); \
   title=$(yabai -m query --windows --window | jq '"^\(.title)$"'); \
@@ -139,6 +162,9 @@ cmd + lctrl - f :
   test $(yabai -m query --windows --window | jq -r .floating) -eq 0 && \
   (echo "$rule manage=off" | tee "$file.tmp" | sh -x && cat "$file" >> "$file.tmp" 2>/dev/null; sort -u "$file.tmp" > "$file"; rm -f "$file.tmp") || \
   (echo "$rule manage=on" | sh -sx; sed -i "/$rule manage=off/d" "$file")
+
+# Stick / Unstick window
+cmd + lctrl - s : yabai -m window --toggle sticky
 
 # Restart Yabai
 cmd + lctrl - r : \

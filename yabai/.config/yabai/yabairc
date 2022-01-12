@@ -42,7 +42,7 @@ yabai -m config mouse_drop_action            swap
 yabai -m config layout                       bsp
 yabai -m config top_padding                  06
 yabai -m config bottom_padding               06
-yabai -m config left_padding                 06
+yabai -m config left_padding                 $(yabai -m query --displays --display | jq '.frame | if (.w > 2000) then .w/2 else 06 end')
 yabai -m config right_padding                06
 yabai -m config window_gap                   06
 
@@ -54,6 +54,10 @@ yabai -m signal --add event=space_changed \
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 
+
+# These applications are always sticky
+yabai -m rule --add app="^Firefox$" manage=off sticky=on
+yabai -m rule --add app="^Telegram$" manage=off sticky=on
 
 # Floating windows configuration
 yabai -m rule --add app="^Firefox$" title="^Opening " manage=off
