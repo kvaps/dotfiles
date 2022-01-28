@@ -57,7 +57,6 @@ ralt + shift - z : skhd -t 'Ž'
 cmd - escape  : yabai -m display --focus next || yabai -m display --focus first
 
 # Move focus between unsticky windows
-# TODO: switch focus from sticky windows does not work
 cmd - 1 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[0]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 cmd - 2 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[1]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
@@ -77,8 +76,10 @@ cmd - 9 : yabai -m space --focus $(yabai -m query --displays --display | jq '.sp
 
 
 # Navigation
-cmd - tab   : yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id')
-cmd - f19   : yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur-1)), last] | first.value.id')
+cmd - tab   : yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id') || \
+                yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.sticky, .id) | first.id')
+cmd - f19   : yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur-1)), last] | first.value.id')  || \
+                yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.sticky, -.id) | first.id')
 lctrl - f19 : skhd -k "lctrl - tab"
 alt - left  : yabai -m window --focus west
 alt - down  : yabai -m window --focus south
