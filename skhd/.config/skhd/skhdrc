@@ -4,11 +4,17 @@ f12: skhd -k 'delete'
 cmd - return : open -n -a "/Applications/Alacritty.app"
 alt - return : open -n -a "/Applications/Alacritty.app"
 
+### alt - 0x32: open -a Telegram
+### alt - 1: open -a Firefox
+### #alt - 2: open -a Alacritty
+### alt - 2: open -a iTerm
+### alt - 3: open -a Finder
+### alt - 4: open -a KeepassXC
 
 # Switch sticky windows
 # 0x32: ` (tilde)
 #alt - 0x32: yabai -m window --focus "$(yabai -m query --windows | jq -re "[sort_by(.id) | .[] | select(.app == (\"Firefox\", \"Telegram\")) | .id] | nth(1 + index($(yabai -m query --windows --window | jq '.id'))) // first")"
-cmd - 0x32: yabai -m window --focus "$(yabai -m query --windows | jq -re "[ [.[] | select(.sticky==1)] | unique_by(.id) | sort_by(.id)[] | .id ] | nth(1 + index($(yabai -m query --windows --window | jq '.id'))) // first")"
+cmd - 0x32: yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[ [.[] | select(.\"is-sticky\")] | unique_by(.id) | sort_by(.id)[] | .id ] | nth(1 + index($(yabai -m query --windows --window | jq '.id'))) // first")"
 
 
 
@@ -50,36 +56,33 @@ ralt + shift - z : skhd -t 'Ž'
 
 
 # fast focus desktop
-#cmd - left  : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur-1)), last] | first.index')
-#cmd - right : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur+1)), first] | first.index')
+#cmd - left  : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(."has-focus"==true)).index as $cur | [(.[]|select(.index == $cur-1)), last] | first.index')
+#cmd - right : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(."has-focus"==true)).index as $cur | [(.[]|select(.index == $cur+1)), first] | first.index')
 #cmd - down  : yabai -m display --focus prev || yabai -m display --focus last
 #cmd - up    : yabai -m display --focus next || yabai -m display --focus first
 cmd - escape  : yabai -m display --focus next || yabai -m display --focus first
 
 # Move focus between unsticky windows
-cmd - 1 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[0]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
-cmd - 2 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[1]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 1 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[0]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 2 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[1]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
-cmd - 3 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[2]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 3 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[2]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
-cmd - 4 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[3]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 4 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[3]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
-cmd - 5 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[4]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 5 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[4]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
-cmd - 6 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[5]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 6 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[5]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
-cmd - 7 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[6]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 7 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[6]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
-cmd - 8 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[7]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
+cmd - 8 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[7]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
-cmd - 9 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[8]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
-
+cmd - 9 : yabai -m space --focus $(yabai -m query --displays --display | jq '.spaces[8]'); yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(."is-sticky"==true)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur)), first] | first.value.id')
 
 # Navigation
-cmd - tab   : yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id') || \
-                yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.sticky, .id) | first.id')
-cmd - f19   : yabai -m window --focus $(yabai -m query --windows --space | jq -r '[.[]|select(.sticky==0)] | sort_by(.id) | to_entries | (.[]|select(.value.focused==1)).key as $cur | [(.[]|select(.key==$cur-1)), last] | first.value.id')  || \
-                yabai -m window --focus $(yabai -m query --windows --space | jq -r 'sort_by(.sticky, -.id) | first.id')
+cmd - tab   : yabai -m window --focus $(yabai -m query --windows --space | jq -er '[.[]|select(."is-sticky"==false)] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur+1)), first] | first.value.id' || yabai -m query --windows --space | jq -r 'sort_by(."is-sticky", .id) | first.id')
+cmd - f19   : yabai -m window --focus $(yabai -m query --windows --space | jq -er '[.[]|select(not(."is-sticky"))] | sort_by(.id) | to_entries | (.[]|select(.value."has-focus"==true)).key as $cur | [(.[]|select(.key==$cur-1)), last] | first.value.id' || yabai -m query --windows --space | jq -r 'sort_by(."is-sticky", -.id) | first.id')
 lctrl - f19 : skhd -k "lctrl - tab"
 alt - left  : yabai -m window --focus west
 alt - down  : yabai -m window --focus south
@@ -93,8 +96,8 @@ lctrl + alt - up    : yabai -m window --warp north
 lctrl + alt - right : yabai -m window --warp east
 
 # Move window to workspace or display
-cmd + lctrl - left  : yabai -m window --space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur-1)), last] | first.index')
-cmd + lctrl - right : yabai -m window --space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | [(.[]|select(.index == $cur+1)), first] | first.index')
+cmd + lctrl - left  : yabai -m window --space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(."has-focus"==true)).index as $cur | [(.[]|select(.index == $cur-1)), last] | first.index')
+cmd + lctrl - right : yabai -m window --space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(."has-focus"==true)).index as $cur | [(.[]|select(.index == $cur+1)), first] | first.index')
 cmd + lctrl - down  : yabai -m window --display prev || yabai -m window --display last  ; yabai -m display --focus prev || yabai -m display --focus last
 cmd + lctrl - up    : yabai -m window --display next || yabai -m window --display first ; yabai -m display --focus next || yabai -m display --focus first
 
@@ -142,14 +145,14 @@ shift + lctrl + alt - right : yabai -m window --insert east
 # Create / Destroy space
 # TODO: remove this ugly workaround
 cmd + lctrl - return : yabai -m space --create; yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | last.index'); \
-                       yabai -m query --spaces | jq -e '([.[].display]|sort|last) as $lastmon | .[]| select(.focused==1).display != $lastmon' || exit 0; \
+                       yabai -m query --spaces | jq -e '([.[].display]|sort|last) as $lastmon | .[]| select(."has-focus"==true).display != $lastmon' || exit 0; \
                        osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to true'; \
                        sleep 0.1; \
                        osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to false'
 
-cmd + lctrl - w      : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | .[]|select(.index == $cur-1).index'); \
-                       yabai -m space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(.focused==1)).index as $cur | .[]|select(.index == $cur+1).index') --destroy; \
-                       yabai -m query --spaces | jq -e '([.[].display]|sort|last) as $lastmon | .[]| select(.focused==1).display != $lastmon' || exit 0; \
+cmd + lctrl - w      : yabai -m space --focus $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(."has-focus"==true)).index as $cur | .[]|select(.index == $cur-1).index'); \
+                       yabai -m space $(yabai -m query --spaces --display | jq -r 'sort_by(.index) | (.[] | select(."has-focus"==true)).index as $cur | .[]|select(.index == $cur+1).index') --destroy; \
+                       yabai -m query --spaces | jq -e '([.[].display]|sort|last) as $lastmon | .[]| select(."has-focus"==true).display != $lastmon' || exit 0; \
                        osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to true'; \
                        sleep 0.1; \
                        osascript -e 'tell application id "tracesOf.Uebersicht" to set hidden of widget id "simple-bar-spaces-jsx" to false'

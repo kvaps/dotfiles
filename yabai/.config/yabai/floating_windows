@@ -1,2 +1,13 @@
+yabai -m rule --add app="^Finder$" title="^Recents$" manage=off
+yabai -m rule --add app="^Finder$" title="^kvaps$" manage=off
+yabai -m rule --add app="^Firefox$" title="^Inbox (352) - kvapss@gmail.com - Gmail$" manage=off
+yabai -m rule --add app="^Firefox$" title="^Slack | Обсуждения | Flant$" manage=off
+yabai -m rule --add app="^Firefox$" title="^where is my device - Поиск в Google$" manage=off
+yabai -m rule --add app="^Firefox$" title="^Запросы на добавление в друзья | Facebook$" manage=off
+yabai -m rule --add app="^Google Chrome$" title="^Meet – Discuss Linstor - Google Chrome – Andrey (flant.com)$" manage=off
 yabai -m rule --add app="^QuickTime Player$" title="^output.mp4$" manage=off
+yabai -m rule --add app="^System Preferences$" title="^C34J79x$" manage=off
+yabai -m rule --add app="^Telegram$" title="^$" manage=off
+yabai -m rule --add app="^UTM$" title="^Windows 7$" manage=off
 yabai -m rule --add app="^VLC$" title="^Ruxpin - Marglyttan$" manage=off
+yabai -m rule --add app="^wine32on64-preloader$" title="^FlatOut 2$" manage=off
