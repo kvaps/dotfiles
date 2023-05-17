@@ -89,6 +89,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -211,6 +212,11 @@ POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION=''
 POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION+='$P9K_KUBECONTEXT_NAME%6F${${:- $P9K_KUBECONTEXT_NAMESPACE}:# default}'
 #POWERLEVEL9K_KUBECONTEXT_PREFIX='⎈ '
 
+
+## for recordings only
+#POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION='$P9K_KUBECONTEXT_NAMESPACE ⎈'
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time kubecontext)
+
 #POWERLEVEL9K_VCS_BACKGROUND='112'
 #POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='214'
 POWERLEVEL9K_VCS_FOREGROUND='148'
@@ -248,7 +254,7 @@ export PATH="$PATH:$GOBIN"
 export LESS="-F -X $LESS"
 
 # docker platform
-export DOCKER_DEFAULT_PLATFORM=linux/x86_64
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # kubectl-krew
 export PATH="$PATH:${HOME}/.krew/bin"
@@ -274,21 +280,35 @@ alias onezone='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role
 alias oneimage='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- oneimage'
 alias onedatastore='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onedatastore'
 
-alias linstor='kubectl exec -n linstor deploy/linstor-controller -ti -- linstor'
+#alias linstor='kubectl exec -n linstor deploy/linstor-controller -ti -- linstor'
+alias linstor='kubectl linstor'
 alias neat='kubectl neat'
 alias krew='kubectl krew'
+
+alias skopeo='skopeo --override-os linux --override-arch amd64'
 # OpenNebula
 export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin:${HOME}/.gem/ruby/2.7.0/bin
 export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
+# OpenStack
+. ~/.a-kvapil-openrc
 
 # Homebrew binaries
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/Cellar/grep/3.7/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/diffutils/bin:$PATH"
+export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
+
+alias cal="LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 /opt/homebrew/opt/util-linux/bin/cal -m"
 
 # Kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
 # ibus-typing-booster
 export GTK_IM_MODULE=ibus
@@ -312,3 +332,14 @@ complete -o nospace -C /usr/local/bin/tk tk
 
 # Disable dock icon bouncing
 printf "\e[?1042l"
+
+
+# Flant integration
+export SSH_ASKPASS=/usr/local/bin/ssh-askpass
+launchctl setenv SSH_ASKPASS $SSH_ASKPASS
+SSH_ENV="/tmp/.ssh_environment_added"
+env_display="`/bin/launchctl getenv DISPLAY`"
+if [[ "x${env_display}" == "x" ]]; then
+	/bin/launchctl setenv DISPLAY :0 
+fi
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"

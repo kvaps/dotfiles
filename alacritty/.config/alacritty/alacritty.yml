@@ -12,17 +12,65 @@ window:
 
 # Font configuration
 font:
-  # Point size
-  size: 13
+  # Point size of the font
+  size: 15
+
+  # Offset is the extra space around each character. offset.y can be thought of
+  # as modifying the linespacing, and offset.x as modifying the letter spacing.
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+  #normal:
+  #  family: SauceCodePro Nerd Font Mono
+  #  style: Light
+  #bold:
+  #  family: SauceCodePro Nerd Font Mono
+  #  style: Medium
+  #italic:
+  #  family: JetBrainsMono Nerd Font Mono
+  #  style: ExtraLightItalic
+  
+      #normal:
+      #  family: DejaVuSansMono Nerd Font Mono
+      #  style: Book
+      #bold:
+      #  family: DejaVuSansMono Nerd Font Mono
+      #  style: Regular
+      #italic:
+      #  family: DejaVuSansMono Nerd Font Mono
+      #  style: Italic
+  #normal:
+  #  family: JetBrainsMono Nerd Font Mono
+  #  style: ExtraLight
+  #bold:
+  #  family: JetBrainsMono Nerd Font Mono
+  #  style: Regular
+  #italic:
+  #  family: JetBrainsMono Nerd Font Mono
+  #  style: ExtraLightItalic
+  #normal:
+  #  family: FiraCode Nerd Font Mono
+  #  style: Light
+  #bold:
+  #  family: FiraCode Nerd Font Mono
+  #  style: Regular
+  #italic:
+  #  family: FiraCode Nerd Font Mono
+  #  style: Italic
   normal:
-    family: DejaVuSansMono Nerd Font Mono
-    style: Book
+    family: Hasklug Nerd Font Mono
+    style: Light
   bold:
-    family: DejaVuSansMono Nerd Font Mono
-    style: Bold
+    family: Hasklug Nerd Font Mono
+    style: Regular
   italic:
-    family: DejaVuSansMono Nerd Font Mono
-    style: Italic
+    family: Hasklug Nerd Font Mono
+    style: Light Italic
 
 env:
   TERM: xterm-256color

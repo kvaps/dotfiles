@@ -1,6 +1,13 @@
 {
   "diagnostic.messageTarget": "echo",
+  "diagnostic.checkCurrentLine": true,
   "languageserver": {
+    "jsonnet": {
+      "command": "jsonnet-language-server",
+      "args": ["-t"],
+      "rootPatterns": [".git/", "jsonnetfile.json"],
+      "filetypes": ["jsonnet","libsonnet"]
+    },
     "terraform": {
       "command": "terraform-lsp",
       "filetypes": [

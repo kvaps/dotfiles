@@ -2,11 +2,20 @@
 	name = "Andrei Kvapil"
 	email = kvapss@gmail.com
 	signingkey = 6A895C2DB83B4289
+[sendemail]
+  confirm = auto
+  smtpServer = smtp.gmail.com
+  smtpServerPort = 587
+  smtpEncryption = tls
+  smtpUser = kvapss@gmail.com
+[include]
+  path = .gitconfig.local
 [core]
 	autocrlf = false
 	safecrlf = true
 [alias]
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	c = commit -s
 [credential]
 	helper = cache --timeout=3600
 #[url "git@gist.github.com:kvaps"]
@@ -15,8 +24,12 @@
 	insteadOf = https://github.com/kvaps
 [url "git@github.com:wedos"]
 	insteadOf = https://github.com/wedos
+[url "git@github.com:piraeusdatastore"]
+	insteadOf = https://github.com/piraeusdatastore
 [url "git@github.com:ltsp"]
 	insteadOf = https://github.com/ltsp
+[url "git@github.com:kubefarm"]
+	insteadOf = https://github.com/kubefarm
 [url "git@github.com:opennebula"]
 	insteadOf = https://github.com/opennebula
 [url "ssh://git@gitlab.wedos.org/"]
@@ -32,3 +45,8 @@
 	gpgSign = true
 [init]
 	defaultBranch = master
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2
+[alias]
+  # Usage: git signoff-rebase [base-commit]
+  signoff-rebase = "!EDITOR='sed -i -re s/^pick/e/' sh -c 'git rebase -i $1 && while test -f .git/rebase-merge/interactive; do git commit --amend --signoff --no-edit && git rebase --continue; done' -"
