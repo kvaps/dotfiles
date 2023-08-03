@@ -39,7 +39,7 @@ yabai -m config mouse_action2                resize
 yabai -m config mouse_drop_action            swap
 
 # general space settings
-yabai -m config layout                       bsp
+yabai -m config layout                       floating
 yabai -m config top_padding                  06
 yabai -m config bottom_padding               06
 yabai -m config left_padding                 06
@@ -62,14 +62,18 @@ if $(yabai -m query --displays --display | jq '.frame | .w > 2000'); then
   # These applications are always sticky
   yabai -m rule --add app="^Firefox$" manage=off sticky=on
   yabai -m rule --add app="^Telegram$" manage=off sticky=on
+  yabai -m rule --add app="^Discord$" manage=off sticky=on
 fi
 
-# Floating windows configuration
-yabai -m rule --add app="^Firefox$" title="^Opening " manage=off
-yabai -m rule --add app="^GIMP-" manage=off
-yabai -m rule --add app="^GIMP-" title=" – GIMP$" manage=on
-yabai -m rule --add app="^Inkscape$" title="^Select file to open$" manage=off
-yabai -m rule --add app="^Inkscape$" title=" - Inkscape$" manage=on
+## Floating windows configuration
+#yabai -m rule --add app="^Firefox$" title="^Opening " manage=off
+#yabai -m rule --add app="^GIMP-" manage=off
+#yabai -m rule --add app="^GIMP-" title=" – GIMP$" manage=on
+#yabai -m rule --add app="^Inkscape$" title="^Select file to open$" manage=off
+#yabai -m rule --add app="^Inkscape$" title=" - Inkscape$" manage=on
+
+# Tiling windows configuration
+yabai -m rule --add app="^Alacritty$" manage=on float=off
 
 # Load dynamic floating_windows configuration
 floating_windows_config="$HOME/.config/yabai/floating_windows"

@@ -253,6 +253,10 @@ export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN"
 export LESS="-F -X $LESS"
 
+
+# colima
+export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
+
 # docker platform
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 

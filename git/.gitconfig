@@ -22,6 +22,8 @@
 #	insteadOf = https://gist.github.com/kvaps
 [url "git@github.com:kvaps"]
 	insteadOf = https://github.com/kvaps
+[url "git@github.com:deckhouse"]
+	insteadOf = https://github.com/deckhouse
 [url "git@github.com:wedos"]
 	insteadOf = https://github.com/wedos
 [url "git@github.com:piraeusdatastore"]
