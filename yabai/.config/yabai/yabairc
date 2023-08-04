@@ -53,9 +53,3 @@ yabai -m signal --add event=space_changed \
 # Keep focus on space when application terminated
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
-
-echo "yabai configuration loaded.."
-
-#echo "ALL ALL = (ALL) NOPASSWD: $(which yabai) --load-sa" | sudo tee /etc/sudoers.d/yabai
-sudo yabai --load-sa
-echo "yabai scripting addon loaded.."
