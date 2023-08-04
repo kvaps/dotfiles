@@ -154,11 +154,10 @@ key_bindings:
   - { key: D,        mods: Alt,     chars: "\x1bd"                       }
 
 shell:
-  program: /usr/bin/env
+  program: /opt/homebrew/bin/tmux
   args:
-    - tmux
     - new-session
-    - -A 
+    - -A
     - -D
     - -s
-    - "main"
+    - main
