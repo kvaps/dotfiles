@@ -1,0 +1,33 @@
+{
+    "title": "Change input source by Caps Lock",
+    "rules": [
+        {
+            "description": "Caps Lock to switch between English and Russian",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "caps_lock",
+                        "modifiers": {
+                            "optional": ["any"]
+                        }
+                    },
+                    "to": [
+                        {
+                            "select_input_source": {
+                                "input_source_id": "com.apple.keylayout.US"
+                            }
+                        }
+                    ],
+                    "to_if_alone": [
+                        {
+                            "select_input_source": {
+                                "input_source_id": "com.apple.keylayout.Russian"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
