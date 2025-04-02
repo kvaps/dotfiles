@@ -254,9 +254,6 @@ export PATH="$PATH:$GOBIN"
 export LESS="-F -X $LESS"
 
 
-# colima
-export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
-
 # docker platform
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
@@ -267,6 +264,7 @@ export PATH="$PATH:${HOME}/.krew/bin"
 #alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
+alias vim='nvim'
 
 alias ke='kubectl exec -ti'
 alias ku='kubectl use'
@@ -276,18 +274,13 @@ alias qa='qbec apply'
 alias qd='qbec diff'
 alias gs='git status'
 
-
-alias oneexec='kubectl exec -n opennebula -ti `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- bash'
-alias onehost='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onehost'
-alias onevm='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onevm'
-alias onezone='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onezone'
-alias oneimage='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- oneimage'
-alias onedatastore='kubectl exec -n opennebula `kubectl get pod -n opennebula -l role=leader -o name` -c oned -- onedatastore'
-
-#alias linstor='kubectl exec -n linstor deploy/linstor-controller -ti -- linstor'
-alias linstor='kubectl linstor'
+alias v=virtctl
+alias linstor='kubectl exec -n cozy-linstor deploy/linstor-controller -ti -- linstor'
+alias l='kubectl exec -n cozy-linstor deploy/linstor-controller -ti -- linstor'
 alias neat='kubectl neat'
 alias krew='kubectl krew'
+alias flux='flux -n $(kubectl config view --minify -o jsonpath="{..namespace}")'
+alias f='flux -n $(kubectl config view --minify -o jsonpath="{..namespace}")'
 
 alias skopeo='skopeo --override-os linux --override-arch amd64'
 # OpenNebula
@@ -347,3 +340,4 @@ if [[ "x${env_display}" == "x" ]]; then
 	/bin/launchctl setenv DISPLAY :0 
 fi
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
