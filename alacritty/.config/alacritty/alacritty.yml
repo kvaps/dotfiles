@@ -147,6 +147,7 @@ colors:
     cursor: '#ebdbb2'
 
 key_bindings:
+  - { key: Return,   mods: Shift,   chars: "\x1b\r"                      }
   - { key: Up,       mods: Alt,     chars: "\x1b[1;5A"                   }
   - { key: Down,     mods: Alt,     chars: "\x1b[1;5B"                   }
   - { key: Left,     mods: Alt,     chars: "\x1bb"                       }
