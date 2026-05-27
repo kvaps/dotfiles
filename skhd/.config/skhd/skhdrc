@@ -1,7 +1,7 @@
 # delete key
 f12: skhd -k 'delete'
 
-cmd - return : open -a "/Applications/Alacritty.app"
+#cmd - return : open -a "/Applications/Alacritty.app"
 alt - return : open -a "/Applications/Alacritty.app"
 
 alt - m : yabai -m window --toggle zoom-fullscreen; yabai -m window --focus "$(yabai -m query --windows --window | jq -er .id)"
