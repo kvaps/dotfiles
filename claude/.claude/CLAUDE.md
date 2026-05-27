@@ -33,29 +33,6 @@ Paragraph separation: blank line. Logical block separation (steps, sections): bl
   - `kubectl apply --filename manifest.yaml --namespace default`
   - `gh pr create --title "feat: add feature" --draft`
 
-### Agent System (~/.claude/agents/)
-
-Specialized subagents for different tasks. Main agent (you) orchestrates them directly.
-
-**Key agents:**
-
-- **tech-oracle**: Technical decisions (libraries, frameworks, patterns). Updates `.architecture.yaml`
-- **gopher-builder**: Go code implementation
-- **snake-charmer**: Python code implementation
-- **docker-smith**: Containerfiles (secure, multi-stage, non-root)
-- **kube-pilot**: K8s manifests and ArgoCD apps
-- **chart-builder**: Helm charts with TDD (helm-unittest)
-- **templ-weaver**: Frontend (Go Templ + HTMX)
-- **doc-curator**: Code cleanup (removes AI artifacts)
-- **code-guardian**: Git operations (ONLY agent with commit rights)
-
-**Usage principles:**
-
-- For technical decisions → call tech-oracle FIRST, wait for `.architecture.yaml` update
-- For implementation → call appropriate specialist (gopher-builder, snake-charmer, etc.)
-- After any code changes → call code-guardian for validation and commit
-- Subagents cannot call other subagents — you coordinate the workflow
-
 ### Delegation-First (Context Hygiene)
 
 Keep the main window clean: retain durable knowledge myself (architecture, current state, decisions, constraints); offload noisy, token-heavy work to agents that run in their own context and return only conclusions.
