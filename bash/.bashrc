@@ -13,7 +13,6 @@ export PATH="$PATH:$GOBIN"
 
 # OpenNebula
 export PATH=$PATH:.gem/ruby/2.6.0/bin
-export ONE_XMLRPC=https://api.opennebula.wedos.cloud/RPC2
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
