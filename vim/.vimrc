@@ -23,7 +23,7 @@ set directory=$HOME/.vim/tmp
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
-Plug 'dhruvasagar/vim-table-mode'
+"Plug 'dhruvasagar/vim-table-mode'
 Plug 'ConradIrwin/vim-bracketed-paste'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -82,7 +82,7 @@ syntax on
 set laststatus=2
 hi Search cterm=NONE ctermfg=NONE ctermbg=236
 
-"Настройки табов
+"Tab settings
 set tabstop=2
 set shiftwidth=2
 set smarttab
@@ -90,17 +90,17 @@ set expandtab
 set autoindent
 set smartindent
 
-"Настройки для поиска
+"Search settings
 set showmatch
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase 
 
-" Включаем bash-подобное дополнение командной строки
+" Enable bash-like command-line completion
 set wildmode=longest:list,full
 
-" Включаем поддержку мыши
+" Enable mouse support
 set mouse=a
 
 " backspace in Visual mode deletes selection
@@ -127,14 +127,14 @@ noremap <Leader>s :update<CR>
 " Force saving files that require root permission 
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
-" Включаем поддержку системного буфера
+" Enable system clipboard support
 if system('uname -s') == "Darwin\n"
   set clipboard=unnamed "OSX
 else
   set clipboard=unnamedplus "Linux
 endif
 
-" Запоминать расположение курсора
+" Remember cursor position
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
@@ -147,7 +147,7 @@ augroup ft_markdown
   au!
   au FileType markdown let b:auto_save = 1
   au FileType markdown let b:enable_spelunker_vim = 1
-  au FileType markdown silent TableModeEnable
+  "au FileType markdown silent TableModeEnable
 augroup END
 
 
