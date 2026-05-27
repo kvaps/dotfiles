@@ -4,33 +4,18 @@ This file provides global guidance to Claude Code (claude.ai/code) for all devel
 
 ## Development Standards and Conventions
 
+### Prose line wrapping
+
+One continuous line per paragraph — in chat, markdown, PR bodies, Telegram, issue comments. The renderer wraps to viewer width. Hard wraps inside a paragraph break narrow viewports and Markdown list rendering. Never wrap "for readability"; defer to renderer or linter.
+
+Exceptions: code blocks, YAML, config files, shell heredocs with semantic whitespace, git commit messages (both summary ~72c and body ~72c — `git log` and many tools rely on this), languages with enforced formatters (gofmt/rustfmt).
+
+Paragraph separation: blank line. Logical block separation (steps, sections): blank line. Inside a paragraph: no breaks. Code-line length is set by the project's linter — never shorten code lines "for readability" unless the linter asks.
+
 ### Communication and Work Approach
 - **Communication language**: ALL chat communication MUST be in Russian. Code, commits, PR descriptions, and documentation remain in English
 - **Communication style**: Direct and critical. Challenge and correct errors or suboptimal solutions
 - **Work approach**: Thoughtful analysis before implementation. Discuss clarifying questions before rushing to code
-
-### Neurodivergence and Communication Preferences
-
-**Diagnoses**: AuDHD (Autism + ADHD) and PTSD
-
-**Communication principles based on these diagnoses:**
-
-#### AuDHD-specific
-- **Direct and literal communication**: No sarcasm, metaphors, idioms, or "reading between the lines". Say exactly what you mean
-- **Clear structure**: Numbered lists, step-by-step instructions, explicit priorities
-- **Written over verbal**: Written communication allows processing time and reference
-- **No ambiguity**: If something can be interpreted multiple ways, clarify upfront
-- **Respect for routines**: Predictable patterns reduce cognitive load
-- **Acknowledge the internal conflict**: Autism craves routine, ADHD seeks novelty — both are valid
-- **Processing time**: Allow time before expecting responses; don't rush
-
-#### PTSD-specific (trauma-informed approach)
-- **Safety first**: Physical and emotional safety in all interactions
-- **Predictability**: Consistent communication patterns, no sudden surprises
-- **Transparency**: Clear about what's happening and why
-- **No pressure**: Offer choices, respect boundaries, allow breaks
-- **Triggers awareness**: Environmental stimuli may cause strong reactions — this is normal
-- **Never require repeating traumatic information**: If something was explained once, don't ask again
 
 #### Combined practical guidelines
 - **Be explicit, not implicit**: State assumptions, don't hint
@@ -40,13 +25,6 @@ This file provides global guidance to Claude Code (claude.ai/code) for all devel
 - **No judgment on reactions**: Intense responses may be trauma or sensory — acknowledge and move on
 
 ### Command Usage
-- **Full flag names only**: Expand every short flag to its full form. This applies to ALL commands and ALL flags without exception
-  - `-y` → `--assume-yes`
-  - `-m` → `--message`
-  - `-f` → `--file` or `--filename` or `--values` (context-dependent)
-  - `-o` → `--option` or `--output` (context-dependent)
-  - `-n` → `--namespace`
-  - `-r` → `--recursive`
 - **GitHub interactions**: Use `gh` command for GitHub operations (PRs, issues, releases, etc.)
 - Examples:
   - `apt-get upgrade --assume-yes --option Dpkg::Options::="--force-confdef"`
@@ -78,6 +56,16 @@ Specialized subagents for different tasks. Main agent (you) orchestrates them di
 - After any code changes → call code-guardian for validation and commit
 - Subagents cannot call other subagents — you coordinate the workflow
 
+### Delegation-First (Context Hygiene)
+
+Keep the main window clean: retain durable knowledge myself (architecture, current state, decisions, constraints); offload noisy, token-heavy work to agents that run in their own context and return only conclusions.
+
+**Delegate** when: output is noisy and I need only the conclusion (repo-wide search, many files, long test/build runs, broad investigation); work is independent/parallelizable; done-criterion is fully specifiable in the prompt.
+
+**Do it myself** when: the target file/symbol is known; it needs tight iteration or the full chat context (agents can't see history); it's architectural or precision-critical work where a lossy summary is costly — then make the agent return evidence (file:line, exact output), not just a verdict.
+
+Delegation saves the *main window*, not total tokens (each agent reloads its own prompt) — so don't delegate trivial work. Default long-running delegated work to background and stay responsive: don't block idly — take the user's next task or fan out more agents, and fold results in when notified. Background only avoids blocking (it doesn't make the window cleaner); use foreground when the next step depends on the agent's output and nothing else can proceed.
+
 ### Git Workflow
 
 - **CRITICAL: NEVER commit or push directly to master/main branch**
@@ -104,6 +92,13 @@ Specialized subagents for different tasks. Main agent (you) orchestrates them di
 - **NEVER run kubectl without explicit context** — prevents accidental operations on wrong clusters
 - **Use `--context` flag** for every kubectl command: `kubectl --context homelab get pods`
 - **Before any kubectl operation**: verify context with `kubectl config current-context`
+
+### SSH Access
+
+- User relies on an **ssh-agent** for SSH authentication (keys are supplied by a password manager, not stored on disk)
+- If an SSH operation fails due to authentication (e.g. `Permission denied (publickey)`, `git push`/`git fetch`/`ssh`/`scp`/`rsync` over SSH failing): **STOP immediately** and ask the user to unlock their password manager so it can add the key to ssh-agent
+- Do NOT retry the same command in a loop, do NOT fall back to HTTPS/other transports, do NOT attempt to generate or copy keys
+- After the user confirms the key is loaded (e.g. `ssh-add -l` shows it), retry the original command once
 
 ### Pull Request Creation Standards
 
@@ -264,7 +259,8 @@ When linter rules conflict with project needs or readability:
 - **If in doubt - ASK FIRST, act after approval**
 - **LANGUAGE REQUIREMENT**:
   - 💰 **FINANCIAL PENALTIES**: User is FINED for public use of Russian language in GitHub (PRs, issues, comments, documentation)
-  - ALL public content MUST be in English: PR titles, PR descriptions, issue comments, code comments, documentation, commit messages
+  - ALL public content MUST be in English: PR titles, PR descriptions, issue comments, code comments, documentation, commit messages.
+  - If you working on a project files where Russian is used by default, use Russian, but keep commits and PRs in English.
   - Russian is ONLY allowed in private communication with user (chat messages to user)
   - Before posting ANYTHING publicly, verify it's in English
 
@@ -297,6 +293,15 @@ When linter rules conflict with project needs or readability:
 - Prefer editing existing files over creating new ones
 - Never proactively create documentation files unless requested
 
+### CLAUDE.md Self-Update
+
+- **Proactively update CLAUDE.md** when useful context emerges during conversations
+- This includes: project-specific conventions discovered, user preferences clarified, recurring patterns, workflow decisions, tool configurations, environment details
+- Update the appropriate CLAUDE.md file: global (`~/.claude/CLAUDE.md`) for cross-project rules, project-level (`<project>/CLAUDE.md`) for project-specific context
+- Before updating: briefly inform the user what you're adding and why
+- Keep additions concise and actionable — no verbose explanations, just clear rules/facts
+- Do NOT duplicate information already present in CLAUDE.md
+
 ### MCP Servers
 
 - **Proactively suggest MCP installation**: When a task could significantly benefit from an MCP server, suggest installing it
@@ -306,3 +311,34 @@ When linter rules conflict with project needs or readability:
 - Prefer containerized MCP servers (podman/docker) over npx/binary for isolation and reproducibility
 - Check installed MCP servers with `claude mcp list`
 - Search for new MCP servers via web search if one likely exists for the technology
+
+### Slack
+
+Two Slack MCP servers are configured side-by-side; pick the right one per action:
+
+- **`slack-extra`** (`mcp__slack-extra__*`, from <https://github.com/kvaps/slack-mcp-extra>) — use for **all writes from the user's identity**:
+  - Posting messages → `slack_post_message`
+  - Replying in threads → same tool with `thread_ts`
+  - Adding/removing reactions → `slack_add_reaction` / `slack_remove_reaction`
+  - Reason: this server uses the user's `xoxp-` token, so messages and reactions appear as the user with no "Sent using @Claude" attribution
+- **Official `plugin:slack:slack`** (`mcp__plugin_slack_slack__*`, hosted at `mcp.slack.com`) — use for **everything else**: search, read channel/thread, list channels/users, canvases, drafts. **Do not use** its `slack_send_message` / `slack_send_message_draft` — they always tag the message with "Sent using @Claude"
+- If a tool exists in both servers, the `slack-extra` one wins for writes; the official one wins for reads
+
+#### Ænix PR-review channel (`C0B0QE2E65S`)
+
+This is the team-wide PR firehose. Channel rules ([source](https://aenix.slack.com/archives/C0B0QE2E65S/p1777467781432079)):
+
+- **One PR = one message.** Never bundle multiple PR links into a single post — split them into separate consecutive messages so per-PR discussion lives in its own thread and it's visible who is already looking at what.
+- Add a couple of words next to each link describing what the PR is about.
+- **Strip the URL preview** before sending (`slack_post_message` does this by default — Slack only generates previews for messages from real Slack clients, so MCP-posted messages are already preview-free; just don't add explicit unfurl blocks).
+- **Status reactions** (use `slack-extra` reactions tools):
+  - `:loading:` — picked it up, currently reviewing
+  - `:white_check_mark:` — LGTM
+  - `:x:` — not LGTM, changes requested
+  - `:merged:` — merged, can scroll past
+
+**Before starting a review** ([source](https://aenix.slack.com/archives/C0B0QE2E65S/p1778091657890989)):
+
+- Check the PR's GitHub state first: `gh pr view <num-or-url> --json reviewDecision,state,mergeStateStatus`. If `reviewDecision == APPROVED` or `state == MERGED` → **skip**, don't burn tokens re-reviewing.
+- Slack reactions in this channel can be stale; GitHub state is the source of truth. Don't trust reactions alone.
+- Only after the GitHub check passes: drop a `:loading:` reaction so others see you've taken it, then run the review, then replace `:loading:` with `:white_check_mark:` / `:x:` based on outcome.
