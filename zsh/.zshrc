@@ -279,19 +279,23 @@ alias linstor='kubectl exec -n cozy-linstor deploy/linstor-controller -ti -- lin
 alias l='kubectl exec -n cozy-linstor deploy/linstor-controller -ti -- linstor'
 alias neat='kubectl neat'
 alias krew='kubectl krew'
+alias klock='kubectl klock'
 alias flux='flux -n $(kubectl config view --minify -o jsonpath="{..namespace}")'
 alias f='flux -n $(kubectl config view --minify -o jsonpath="{..namespace}")'
 
 alias skopeo='skopeo --override-os linux --override-arch amd64'
-# OpenNebula
-export PATH=$PATH:${HOME}/.gem/ruby/2.6.0/bin:${HOME}/.gem/ruby/2.7.0/bin
-export ONE_XMLRPC=https://opennebula.wedos.cloud/RPC2
-# OpenStack
-. ~/.a-kvapil-openrc
+alias ttyd="ttyd -t 'fontFamily=Hasklug Nerd Font Mono' -t 'theme={\"background\": \"#171717\"}' -t fontSize=20"
+alias c='cozypkg'
+
+# You live only once
+alias claude='claude --dangerously-skip-permissions'
+
+# Kubernetes
+export KUBECONFIG=kubeconfig:../kubeconfig:../../kubeconfig:$HOME/.kube/config
 
 # Homebrew binaries
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/Cellar/grep/3.7/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/diffutils/bin:$PATH"
@@ -301,6 +305,9 @@ alias cal="LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 /opt/homebrew/opt/util-linux/bin/
 
 # Kubebuilder
 export PATH=$PATH:/usr/local/kubebuilder/bin
+
+# NPM global packages
+export PATH=$PATH:$(npm config get prefix)/bin
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -331,13 +338,6 @@ complete -o nospace -C /usr/local/bin/tk tk
 printf "\e[?1042l"
 
 
-# Flant integration
-export SSH_ASKPASS=/usr/local/bin/ssh-askpass
-launchctl setenv SSH_ASKPASS $SSH_ASKPASS
-SSH_ENV="/tmp/.ssh_environment_added"
-env_display="`/bin/launchctl getenv DISPLAY`"
-if [[ "x${env_display}" == "x" ]]; then
-	/bin/launchctl setenv DISPLAY :0 
-fi
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+source <(flux completion zsh)
+source <(cozypkg completion zsh)
+source <(virtctl completion zsh)
