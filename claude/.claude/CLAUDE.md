@@ -307,7 +307,7 @@ This is the team-wide PR firehose. Channel rules ([source](https://aenix.slack.c
 
 - **One PR = one message.** Never bundle multiple PR links into a single post — split them into separate consecutive messages so per-PR discussion lives in its own thread and it's visible who is already looking at what.
 - Add a couple of words next to each link describing what the PR is about.
-- **Strip the URL preview** before sending (`slack_post_message` does this by default — Slack only generates previews for messages from real Slack clients, so MCP-posted messages are already preview-free; just don't add explicit unfurl blocks).
+- **No URL previews.** Messages in this channel MUST be sent without link previews. Slack unfurls all links by default; `slack-extra`'s `slack_post_message` disables previews by default (`unfurl_links`/`unfurl_media` = false) — never pass `unfurl_links: true` / `unfurl_media: true` here.
 - **Status reactions** (use `slack-extra` reactions tools):
   - `:loading:` — picked it up, currently reviewing
   - `:white_check_mark:` — LGTM
