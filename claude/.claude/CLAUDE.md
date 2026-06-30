@@ -297,6 +297,7 @@ Two Slack MCP servers are configured side-by-side; pick the right one per action
   - Posting messages → `slack_post_message`
   - Replying in threads → same tool with `thread_ts`
   - Adding/removing reactions → `slack_add_reaction` / `slack_remove_reaction`
+  - Sending without a link preview → `slack_post_message` posts with unfurling off (no URL preview) — `slack-extra` can and does suppress previews; the official server always unfurls. Use `slack-extra` whenever a preview must be suppressed (e.g. PR links).
   - Reason: this server uses the user's `xoxp-` token, so messages and reactions appear as the user with no "Sent using @Claude" attribution
 - **Official `plugin:slack:slack`** (`mcp__plugin_slack_slack__*`, hosted at `mcp.slack.com`) — use for **everything else**: search, read channel/thread, list channels/users, canvases, drafts. **Do not use** its `slack_send_message` / `slack_send_message_draft` — they always tag the message with "Sent using @Claude"
 - If a tool exists in both servers, the `slack-extra` one wins for writes; the official one wins for reads
