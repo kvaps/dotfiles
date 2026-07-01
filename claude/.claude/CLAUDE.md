@@ -58,6 +58,7 @@ Delegation saves the *main window*, not total tokens (each agent reloads its own
 - Before creating PR: ask for permission
 - Before merging: ask for explicit permission
 - Push to feature branch: allowed
+- **Branch in the upstream/main repo when you have push access there** — create the feature branch on `origin` (the main repo), not in a personal fork. Fork PRs don't receive CI secrets (image-registry push, etc.), so their pipelines can't go green. Use a fork branch only when you lack push access to the upstream repo.
 - Push to master/main: **ABSOLUTELY FORBIDDEN**
 - All commits, PR descriptions, and code: in English
 - **NEVER mention (@username) the user in PRs** - PRs are already from user's account and they see them automatically; mentions look strange from outside perspective
@@ -252,10 +253,10 @@ When linter rules conflict with project needs or readability:
 - **If in doubt - ASK FIRST, act after approval**
 - **LANGUAGE REQUIREMENT**:
   - 💰 **FINANCIAL PENALTIES**: User is FINED for public use of Russian language in GitHub (PRs, issues, comments, documentation)
-  - ALL public content MUST be in English: PR titles, PR descriptions, issue comments, code comments, documentation, commit messages.
-  - If you working on a project files where Russian is used by default, use Russian, but keep commits and PRs in English.
-  - Russian is ONLY allowed in private communication with user (chat messages to user)
-  - Before posting ANYTHING publicly, verify it's in English
+  - **English** is mandatory for GitHub and any externally-visible / world-readable content: PR titles, PR descriptions, issue comments, code comments, documentation, commit messages.
+  - **Russian** for internal Ænix team Slack (`#review-plz` and other `aenix.slack.com` channels) — that is the team's working language, so post PR blurbs, thread replies, and status notes there in Russian. Russian is also the language for private chat with the user.
+  - If working on project files where Russian is used by default, use Russian, but keep commits and PRs in English.
+  - Before posting to GitHub or any world-readable place, verify it's in English.
 
 ### Code Quality Principles
 
@@ -324,6 +325,7 @@ This is the team-wide PR firehose. Channel rules ([source](https://aenix.slack.c
 
 - **One PR = one message.** Never bundle multiple PR links into a single post — split them into separate consecutive messages so per-PR discussion lives in its own thread and it's visible who is already looking at what.
 - Add a couple of words next to each link describing what the PR is about.
+- **Write in Russian** — this is an internal Ænix team channel; the PR blurb and any thread replies here go in Russian (the English-only rule is for GitHub/world-readable content, not this channel).
 - **No URL previews.** Messages in this channel MUST be sent without link previews. Slack unfurls all links by default; `slack-extra`'s `slack_post_message` disables previews by default (`unfurl_links`/`unfurl_media` = false) — never pass `unfurl_links: true` / `unfurl_media: true` here.
 - **Status reactions** (use `slack-extra` reactions tools):
   - `:loading:` — picked it up, currently reviewing
