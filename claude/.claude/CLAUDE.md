@@ -133,7 +133,7 @@ When creating Pull Requests, follow these strict guidelines:
 
 ### Commit Message Format
 
-Use **Semantic Commit Messages** with Claude attribution:
+Use **Semantic Commit Messages** with an AI-assistance trailer:
 
 **Format:**
 
@@ -142,10 +142,15 @@ type(scope): brief description of changes
 
 Optional longer explanation of what was changed and why.
 
-Co-Authored-By: Claude <noreply@anthropic.com>
+Assisted-By: Claude
 ```
 
-**IMPORTANT**: Do NOT include "🤖 Generated with [Claude Code]" anywhere. The `Co-Authored-By: Claude <noreply@anthropic.com>` line is sufficient attribution for commits only. In PR descriptions, comments, documentation, and all other content - no Claude attribution is needed at all.
+**IMPORTANT — use `Assisted-By:`, NOT `Co-Authored-By:`, for AI agents:**
+
+- `Co-Authored-By: Claude <noreply@anthropic.com>` implies legal **co-authorship** (a trailer GitHub recognizes). Under US copyright law — which governs CNCF and most large OSS projects — that can attribute rights over the code to Anthropic. Avoid it.
+- `Assisted-By: Claude` is a neutral, informational trailer stating an AI agent assisted, without transferring authorship. There is no single ratified standard yet, but `Assisted-By:` is the emerging convention (Linux kernel, Fedora, LLVM guidance).
+- Do NOT include "🤖 Generated with [Claude Code]" anywhere. The `Assisted-By: Claude` line is sufficient for commits only. In PR descriptions, comments, documentation, and all other content — no AI attribution is needed at all.
+- **Always defer to the target project's own contribution rules** for how (or whether) to disclose AI assistance — see the Kubernetes exception below.
 
 **Types:**
 
@@ -170,6 +175,17 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 - Good example: "Improve digest file handling"
 - Excessive technical details increase cognitive load and obscure the actual purpose
 - Code review shows implementation details - commit message should explain the change rationale
+
+### AI-Assistance Disclosure — Per-Project Rules
+
+- **Always read the target project's contribution rules first** (`CONTRIBUTING.md`, `DCO`, `.github/`, community policy). Project rules override the defaults above for how (or whether) to disclose AI assistance.
+
+#### Kubernetes (github.com/kubernetes/*)
+
+- **NO trailers of any kind** in commits — this includes `Assisted-By:`, `Co-Authored-By:`, and any other `Key: value` attribution line. Kubernetes strictly forbids them.
+- Keep the standard DCO `Signed-off-by:` line only (via `git commit --signoff`); that is NOT an AI-attribution trailer and is required.
+- **Disclose AI use explicitly in the Pull Request** (per <https://kubernetes.io/blog/2026/06/26/open-source-maintainership-in-the-age-of-ai/>): state in the PR description, in plain prose, that an AI agent assisted and to what extent. Do not rely on trailers for this.
+- The contributor stays the human-in-the-loop and is fully responsible for the code — review every AI-produced line before submitting.
 
 ### Push Policy
 
