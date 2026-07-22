@@ -1,0 +1,121 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#7c6f64"
+blue = "#83a598"
+cyan = "#8ec07c"
+green = "#b8bb26"
+magenta = "#d3869b"
+red = "#fb4934"
+white = "#ebdbb2"
+yellow = "#fabd2f"
+
+[colors.cursor]
+cursor = "#ebdbb2"
+text = "#000000"
+
+[colors.dim]
+black = "#1b1b1b"
+blue = "#2e595b"
+cyan = "#5f8053"
+green = "#656511"
+magenta = "#764159"
+red = "#881813"
+white = "#7e7462"
+yellow = "#8f6616"
+
+[colors.normal]
+black = "#282828"
+blue = "#458588"
+cyan = "#689d6a"
+green = "#98971a"
+magenta = "#b16286"
+red = "#cc241d"
+white = "#bdae93"
+yellow = "#d79921"
+
+[colors.primary]
+background = "#171717"
+foreground = "#ebdbb2"
+
+[colors.selection]
+cursor = "#ebdbb2"
+text = "#000000"
+
+[colors.vi_mode_cursor]
+cursor = "#ebdbb2"
+text = "#000000"
+
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1"
+
+[font]
+size = 15
+
+[font.bold]
+family = "Hasklug Nerd Font Mono"
+style = "Regular"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "Hasklug Nerd Font Mono"
+style = "Light Italic"
+
+[font.normal]
+family = "Hasklug Nerd Font Mono"
+style = "Light"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+chars = "\u001B\r"
+key = "Return"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[1;5A"
+key = "Up"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001B[1;5B"
+key = "Down"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "Left"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bd"
+key = "D"
+mods = "Alt"
+
+[terminal]
+
+[terminal.shell]
+args = ["new-session", "-A", "-D", "-s", "main"]
+program = "/opt/homebrew/bin/tmux"
+
+[window]
+decorations = "None"
+dynamic_padding = true
+
+[window.padding]
+x = 1
+y = 1
+
+[keyboard]
