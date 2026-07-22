@@ -51,6 +51,13 @@ text = "#000000"
 TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1"
 
+# Font rendering on macOS:
+# Alacritty dropped `use_thin_strokes`; stroke weight is now controlled by the
+# macOS `AppleFontSmoothing` user default, NOT by this file. If text looks thin
+# or faint, thicken it (2 = standard, 3 = heavier), then fully quit (Cmd+Q) and
+# reopen Alacritty:
+#   defaults write org.alacritty AppleFontSmoothing -int 2
+# Undo: defaults delete org.alacritty AppleFontSmoothing
 [font]
 size = 15
 
