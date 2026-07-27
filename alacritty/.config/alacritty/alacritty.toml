@@ -128,6 +128,56 @@ action = "Paste"
 key = "м"
 mods = "Command"
 
+# Cmd+F / Cmd+B — search (physical F/B report "а"/"и")
+[[keyboard.bindings]]
+action = "SearchForward"
+key = "а"
+mode = "~Search"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "SearchBackward"
+key = "и"
+mode = "~Search"
+mods = "Command"
+
+# Cmd+Ctrl+F — fullscreen
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "а"
+mods = "Command|Control"
+
+# Cmd+K — clear screen + scrollback (physical K reports "л")
+[[keyboard.bindings]]
+chars = "\u000c"
+key = "л"
+mode = "~Vi|~Search"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ClearHistory"
+key = "л"
+mode = "~Vi|~Search"
+mods = "Command"
+
+# Cmd+C in vi mode clears the selection (physical C reports "с")
+[[keyboard.bindings]]
+action = "ClearSelection"
+key = "с"
+mode = "Vi|~Search"
+mods = "Command"
+
+# Cmd+Shift+] / [ — tab switching (physical ]/[ report "ъ"/"х")
+[[keyboard.bindings]]
+action = "SelectNextTab"
+key = "ъ"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+action = "SelectPreviousTab"
+key = "х"
+mods = "Command|Shift"
+
 [terminal]
 
 [terminal.shell]
