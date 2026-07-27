@@ -143,3 +143,48 @@ x = 1
 y = 1
 
 [keyboard]
+
+# URL hints: highlight + open/copy links. Works through tmux via the keyboard
+# bindings. Ctrl+Shift+O = open in browser, Ctrl+Shift+Y = copy to clipboard,
+# Ctrl+click = open (best-effort under tmux mouse mode). hyperlinks=true also
+# picks up OSC 8 escape-sequence links.
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+
+[[hints.enabled]]
+command = "open"
+hyperlinks = true
+post_processing = true
+persist = false
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\s<>\"'`{}\\\\^⟨⟩]+"
+# No mods: under tmux mouse mode a plain click is eaten by tmux, and Shift is
+# what bypasses it — so Shift+click reaches Alacritty and opens the link.
+mouse = { enabled = true }
+binding = { key = "O", mods = "Control|Shift" }
+
+[[hints.enabled]]
+action = "Copy"
+hyperlinks = true
+post_processing = true
+persist = false
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\s<>\"'`{}\\\\^⟨⟩]+"
+binding = { key = "Y", mods = "Control|Shift" }
+
+# Same URL hints for the Russian layout: Ctrl+Shift+Щ (physical O) opens,
+# Ctrl+Shift+Н (physical Y) copies. No mouse binding here — it stays on the
+# entries above so Ctrl+click can't fire twice.
+[[hints.enabled]]
+command = "open"
+hyperlinks = true
+post_processing = true
+persist = false
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\s<>\"'`{}\\\\^⟨⟩]+"
+binding = { key = "щ", mods = "Control|Shift" }
+
+[[hints.enabled]]
+action = "Copy"
+hyperlinks = true
+post_processing = true
+persist = false
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\s<>\"'`{}\\\\^⟨⟩]+"
+binding = { key = "н", mods = "Control|Shift" }
