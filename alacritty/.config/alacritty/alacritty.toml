@@ -15,15 +15,18 @@ yellow = "#fabd2f"
 cursor = "#ebdbb2"
 text = "#000000"
 
+# Faint/dim text (SGR 2) palette. Brightened so dim text (e.g. URLs that
+# Claude Code prints faint) stays readable on the dark background. Revert to
+# the darker Gruvbox dims if you want more contrast between normal and faint.
 [colors.dim]
 black = "#1b1b1b"
-blue = "#2e595b"
-cyan = "#5f8053"
-green = "#656511"
-magenta = "#764159"
-red = "#881813"
-white = "#7e7462"
-yellow = "#8f6616"
+blue = "#3f7a7d"
+cyan = "#5c9060"
+green = "#83821a"
+magenta = "#98567a"
+red = "#ad211b"
+white = "#a99d85"
+yellow = "#b9831f"
 
 [colors.normal]
 black = "#282828"
