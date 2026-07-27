@@ -114,6 +114,20 @@ chars = "\u001Bd"
 key = "D"
 mods = "Alt"
 
+# Cmd+C / Cmd+V in the Russian (йцукен) layout.
+# Alacritty matches bindings on the *logical* key, so with a Cyrillic layout the
+# physical C/V keys report "с"/"м" and the built-in Cmd+C / Cmd+V bindings never
+# fire. These are additive duplicates — the Latin ones keep working.
+[[keyboard.bindings]]
+action = "Copy"
+key = "с"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "м"
+mods = "Command"
+
 [terminal]
 
 [terminal.shell]
