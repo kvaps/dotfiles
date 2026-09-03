@@ -1,0 +1,49 @@
+#!/bin/sh
+# Strip AI attribution that must never reach git history.
+#
+# It also normalises an AI-attribution trailer that names a product to the
+# neutral `Assisted-by: LLM`, which is what the trailer-guard plugin expects.
+#
+# Claude Code's harness appends a private per-session URL to commit messages,
+# and agents sometimes add a DCO sign-off in Claude's name. Both are wrong in
+# public history: the link is meaningless to reviewers, and a Signed-off-by
+# that is not a human invalidates the DCO it claims to make. Written after both
+# leaked into cozystack/cozystack#2698 — the CLAUDE.md rule alone did not hold,
+# so this enforces it mechanically.
+#
+# Installed globally via core.hooksPath. A repository's own commit-msg hook is
+# still honoured: it runs after this one, because core.hooksPath would
+# otherwise silently disable it.
+
+set -eu
+
+msg=$1
+tmp=$(mktemp "${TMPDIR:-/tmp}/commit-msg.XXXXXX")
+trap 'rm -f "$tmp"' EXIT
+
+sed -E \
+  -e '/https:\/\/claude\.ai\/code\/session_/d' \
+  -e '/^[[:space:]]*[Cc]laude-[Ss]ession:/d' \
+  -e '/^[[:space:]]*[Ss]igned-off-by:[[:space:]]*[Cc]laude([[:space:]]|<|$)/d' \
+  -e '/^[[:space:]]*[Cc]o-[Aa]uthored-[Bb]y:[[:space:]]*[Cc]laude([[:space:]]|<|$)/d' \
+  -e '/^[[:space:]]*([Ss]igned-off-by|[Cc]o-[Aa]uthored-[Bb]y):.*@anthropic\.com/d' \
+  -e '/[Gg]enerated with \[?[Cc]laude [Cc]ode/d' \
+  -e 's/^[[:space:]]*[Aa]ssisted-[Bb]y:[[:space:]]*([Cc]laude|GPT|Gemini|Copilot|Codex|ChatGPT)[^[:space:]]*[[:space:]]*$/Assisted-by: LLM/' \
+  "$msg" > "$tmp"
+
+# Removing trailers can leave a dangling blank line at the end; trim it.
+awk '{ line[NR] = $0 }
+     END { last = NR
+           while (last > 0 && line[last] ~ /^[[:space:]]*$/) last--
+           for (i = 1; i <= last; i++) print line[i] }' "$tmp" > "$msg"
+
+# Hand off to the repository-local hook, which core.hooksPath bypasses.
+# Resolve it against the real .git directory: `git rev-parse --git-path` honours
+# core.hooksPath and would hand back this very file, recursing forever.
+local_hook="$(git rev-parse --git-common-dir)/hooks/commit-msg"
+if [ -x "$local_hook" ] && [ "$local_hook" -ef "$0" ] 2>/dev/null; then
+	local_hook=""
+fi
+if [ -n "$local_hook" ] && [ -x "$local_hook" ]; then
+	exec "$local_hook" "$msg"
+fi

@@ -13,6 +13,10 @@
 [core]
 	autocrlf = false
 	safecrlf = true
+	# Global hooks. commit-msg strips Claude Code session URLs and AI
+	# sign-offs before they reach history; it re-runs a repository's own
+	# commit-msg afterwards, which hooksPath would otherwise disable.
+	hooksPath = ~/dotfiles/git/hooks
 [alias]
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	c = commit -s
